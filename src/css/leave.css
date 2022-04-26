@@ -1,0 +1,9 @@
+.work-check-container {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.work-check-container > h3 {
+  margin-bottom: 10px;
+}

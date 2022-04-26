@@ -1,0 +1,37 @@
+:root {
+  --orange: #dd6e42;
+  --yellow: #e8dab2;
+  --navy: #4f6d7a;
+  --skyBlue: #c0d6df;
+  --gray: #eaeaea;
+}
+
+.main-container {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 100%;
+}
+
+.tb-isOnWork {
+  height: 500px;
+  width: 30%;
+  background-color: white;
+}
+
+.tb-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px;
+  vertical-align: middle;
+  background-color: var(--navy);
+  color: white;
+  font-weight: bold;
+}
+
+.btn-dot {
+  background-color: rgb(84, 178, 84);
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+}

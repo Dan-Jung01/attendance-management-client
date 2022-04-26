@@ -1,0 +1,14 @@
+.nav-container {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.nav-container > li {
+  margin: 10px;
+}
+
+.nav-container > li > a {
+  padding: 10px;
+}

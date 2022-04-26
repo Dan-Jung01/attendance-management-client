@@ -1,0 +1,84 @@
+:root {
+  --orange: #dd6e42;
+  --yellow: #e8dab2;
+  --navy: #4f6d7a;
+  --skyBlue: #c0d6df;
+  --gray: #eaeaea;
+}
+
+.side-container {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 60px 0 10px 0;
+  /* padding: 1.5rem 1.5rem 2rem; */
+  transition: 0.5s;
+  /* z-index: var(--z-fixed); */
+
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* text-align: center; */
+  /* width: 300px; */
+  background-color: var(--navy);
+  /* padding-top: 80px; */
+  /* padding-bottom: 50px; */
+  /* z-index: 10; */
+  /* height: 100vh; */
+  /* justify-content: space-between; */
+  /* overflow: hidden; */
+}
+
+.side-container .menu {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-around;
+}
+
+.side-container .btn-container {
+  justify-content: center;
+}
+
+.side-container .btn-container .btn-logout {
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.nav-container .content {
+  position: relative;
+  width: 100%;
+}
+
+.side-container .menu .link {
+  /* flex-direction: column; */
+  width: 100%;
+  padding: 15px 0;
+  color: white;
+  font-size: 10px;
+}
+
+.side-container .menu .link > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 17px;
+}
+
+.side-container .menu .link > div > img {
+  display: block;
+  padding-bottom: 5px;
+}
+
+.side-container .menu .link.selected {
+  background-color: var(--orange);
+}
+
+.side-container .menu .link:hover {
+  background-color: var(--skyBlue);
+  color: black;
+}

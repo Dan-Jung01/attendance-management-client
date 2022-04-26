@@ -1,0 +1,42 @@
+:root {
+  --orange: #dd6e42;
+  --yellow: #e8dab2;
+  --navy: #4f6d7a;
+  --skyBlue: #c0d6df;
+  --gray: #eaeaea;
+}
+
+.MuiDataGrid-columnHeaders {
+  color: white;
+  background-color: var(--navy);
+}
+
+.MuiDataGrid-virtualScroller {
+  background-color: white;
+}
+
+.admin-work-container .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--navy);
+  height: 10%;
+  /* margin-bottom: 20px; */
+  padding: 10px 20px;
+  color: white;
+  border: 1px solid var(--gray);
+}
+
+.admin-work-container .header .input {
+  background-color: var(--navy);
+  color: white;
+  border-bottom: 1px solid white;
+  width: 30%;
+  padding: 10px;
+  /* outline: 1px solid var(--orange); */
+  outline: none;
+}
+
+.admin-work-container .header .input::placeholder {
+  color: var(--gray);
+}
