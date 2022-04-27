@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/adminWork.css";
+import "../css/adminUser.css";
 import AdminContainer from "../components/AdminContainer";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
@@ -7,53 +7,17 @@ import Box from "@mui/material/Box";
 import EditWorkTimeModal from "../components/modal/workHistory/EditWorkTimeModal";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import EditUserInfoModal from "../components/modal/userManagement/EditUserInfoModal";
 import moment from "moment";
 
 const AdminUsers = () => {
-  const [selected, setSelected] = useState([]);
-  const [page, setPage] = useState(0);
-  const [dense, setDense] = useState(false);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const [usersWorkTime, setUsersWorkTime] = useState([]);
-  const [editWorkTimeModalOpen, setEditWorkTimeModalOpen] = useState(false);
+  const [editUserModalOpen, setEditUserModalOpen] = useState(false);
   const [tableValue, setTableValue] = useState({});
   const [dialogValue, setDialogValue] = useState(false);
   const [searchWord, setSearchWord] = useState("");
 
   const API_URL = "http://localhost:3003";
   const [users, setUsers] = useState([]);
-
-  const fetchUserInfo = () => {
-    axios.get(`http://localhost:3003/user/userInfo`).then((res) => {
-      if (res.status === 200) {
-        setUsers(res.data);
-      }
-    });
-  };
-
-  const delBtnHandler = () => {
-    axios
-      .delete(`http://localhost:3003/user/userInfo/${selected}`)
-      .then((res) => {
-        if (res.status === 200) {
-          console.log("삭제 완료");
-        }
-      })
-      .then(alert("삭제되었습니다"))
-      .then(fetchUserInfo())
-      .then(setSelected([]))
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const rows = users;
-  console.log(selected);
-
-  useEffect(() => {
-    fetchUserInfo();
-  }, []);
 
   const columns = [
     {
@@ -78,7 +42,6 @@ const AdminUsers = () => {
       flex: 2,
       align: "center",
       headerAlign: "center",
-      valueGetter: ({ value }) => value,
     },
     {
       field: "phone",
@@ -107,7 +70,7 @@ const AdminUsers = () => {
           style={{ fontSize: 17 }}
           onClick={() => {
             setTableValue(params.row);
-            setEditWorkTimeModalOpen(true);
+            setEditUserModalOpen(true);
           }}
         />
       ),
@@ -141,9 +104,9 @@ const AdminUsers = () => {
     }
   };
 
-  const filtering = usersWorkTime.filter((val) => {
+  const filtering = users.filter((val) => {
     if (searchWord === "") {
-      return usersWorkTime;
+      return users;
     } else if (val.user_name.toLowerCase().includes(searchWord.toLowerCase())) {
       return searchWord;
     }
@@ -151,9 +114,9 @@ const AdminUsers = () => {
 
   useEffect(() => {
     axios.get(`${API_URL}/user/userInfo`).then(async (res) => {
-      setUsersWorkTime(res?.data);
+      setUsers(res?.data);
     });
-  }, [editWorkTimeModalOpen, dialogValue]);
+  }, [editUserModalOpen, dialogValue]);
 
   return (
     <AdminContainer>
@@ -174,11 +137,11 @@ const AdminUsers = () => {
         }}
       >
         <div className="header">
-          <div>총 {filtering.length}건</div>
+          <div>총 {filtering.length}명</div>
           <input
             className="input"
             type={"text"}
-            placeholder="검색어를 입력해주세요"
+            placeholder="이름을 검색해주세요"
             onChange={(e) => {
               setSearchWord(e.target.value);
             }}
@@ -192,9 +155,9 @@ const AdminUsers = () => {
           checkboxSelection={false}
         />
       </Box>
-      <EditWorkTimeModal
-        editWorkTimeModalOpen={editWorkTimeModalOpen}
-        setEditWorkTimeModalOpen={setEditWorkTimeModalOpen}
+      <EditUserInfoModal
+        editUserModalOpen={editUserModalOpen}
+        setEditUserModalOpen={setEditUserModalOpen}
         tableValue={tableValue}
       />
     </AdminContainer>
