@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-
-import { Box, Modal } from "@mui/material";
-
+import "../../../css/modal/showStatusModal.css";
+import { Box, Modal, Tab } from "@mui/material";
+import { TabList, TabPanel, TabContext } from "@mui/lab";
 import ModalStyle from "../../../../utils/ModalStyle";
-import "../../../css/modal/editWorkTimeModal.css";
-
 import axios from "axios";
 
-// TODO: 사용자 관리 테이블 더블클릭 했을 때 사용자 근태상태 모달 띄우기
-
-const ShowStatusModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen }) => {
+const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableValue }) => {
   // const [inputOnWork, setInputOnWork] = useState(tableValue?.on_work);
   // const [inputOffWork, setInputOffWork] = useState(tableValue?.off_work);
+  const [tabValue, setTabValue] = useState("1");
+
+  const handleTabChange = (event, newValue) => {
+    setTabValue(newValue);
+  };
 
   const API_URL = "http://localhost:3003";
 
@@ -23,34 +24,38 @@ const ShowStatusModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen }) =>
   // };
 
   const modalClose = () => {
-    setEditWorkTimeModalOpen(false);
-  };
-
-  // console.log(tableValue);
-  // console.log(inputOnWork);
-  // console.log(inputOffWork);
-
-  const editWorkTime = () => {
-    axios
-      .put(`${API_URL}/both-work-time`, {
-        // on_work: inputOnWork,
-        // off_work: inputOffWork,
-        // today_date: tableValue.today_date,
-        // user_id: tableValue.user_id,
-      })
-      .then(alert("수정이 완료되었습니다"))
-      .then(setEditWorkTimeModalOpen(false));
+    setShowStatusModalOpen(false);
   };
 
   return (
     <Modal
-      open={editWorkTimeModalOpen}
+      open={showStatusModalOpen}
       // onClose={handleClose}
     >
-      <Box sx={ModalStyle(450, 250, 0)} className="workTime-modal-conatiner">
-        <div className="header">
-          <h2>사용자 출퇴근 시간 수정</h2>
-        </div>
+      <Box sx={ModalStyle(650, 450, 0)} className="status-modal-conatiner">
+        <TabContext value={tabValue}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <div className="header">
+              <h2>근태정보</h2>
+              <label className="btn-close" onClick={modalClose}>
+                X
+              </label>
+            </div>
+            <TabList onChange={handleTabChange} aria-label="lab API tabs example">
+              <Tab label="요약" value="1" />
+              <Tab label="지각" value="2" />
+              <Tab label="결근" value="3" />
+              <Tab label="미체크" value="4" />
+              <Tab label="조퇴" value="5" />
+            </TabList>
+          </Box>
+          <TabPanel value="1">요약</TabPanel>
+          <TabPanel value="2">지각</TabPanel>
+          <TabPanel value="3">결근</TabPanel>
+          <TabPanel value="4">미체크</TabPanel>
+          <TabPanel value="5">조퇴</TabPanel>
+        </TabContext>
+
         <div className="body">
           <div className="rows">
             <div className="title">출근시간</div>
@@ -79,10 +84,7 @@ const ShowStatusModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen }) =>
         </div>
         <div className="btn-container">
           <button className="btn-cancle" onClick={modalClose}>
-            취소
-          </button>
-          <button className="btn-save" onClick={editWorkTime}>
-            수정완료
+            확인
           </button>
         </div>
       </Box>

@@ -4,14 +4,15 @@ import AdminContainer from "../components/AdminContainer";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import EditWorkTimeModal from "../components/modal/workHistory/EditWorkTimeModal";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { RiPagesLine } from "react-icons/ri";
 import EditUserInfoModal from "../components/modal/userManagement/EditUserInfoModal";
-import moment from "moment";
+import ShowStatusModal from "../components/modal/userManagement/ShowStatusModal";
 
 const AdminUsers = () => {
   const [editUserModalOpen, setEditUserModalOpen] = useState(false);
+  const [showStatusModalOpen, setShowStatusModalOpen] = useState(false);
   const [tableValue, setTableValue] = useState({});
   const [dialogValue, setDialogValue] = useState(false);
   const [searchWord, setSearchWord] = useState("");
@@ -92,6 +93,23 @@ const AdminUsers = () => {
         />
       ),
     },
+    {
+      field: "status",
+      headerName: "상태",
+      flex: 1,
+      align: "center",
+      headerAlign: "center",
+      renderCell: (params) => (
+        <RiPagesLine
+          className="icon"
+          style={{ fontSize: 17 }}
+          onClick={async () => {
+            setDialogValue(false);
+            setShowStatusModalOpen(true);
+          }}
+        />
+      ),
+    },
   ];
 
   const deleteUser = async (selectedTableValue) => {
@@ -158,6 +176,11 @@ const AdminUsers = () => {
       <EditUserInfoModal
         editUserModalOpen={editUserModalOpen}
         setEditUserModalOpen={setEditUserModalOpen}
+        tableValue={tableValue}
+      />
+      <ShowStatusModal
+        showStatusModalOpen={showStatusModalOpen}
+        setShowStatusModalOpen={setShowStatusModalOpen}
         tableValue={tableValue}
       />
     </AdminContainer>
