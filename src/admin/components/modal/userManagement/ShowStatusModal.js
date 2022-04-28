@@ -18,14 +18,6 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
   };
 
   const API_URL = "http://localhost:3003";
-  // console.log(status);
-
-  // const handleOnWorkChange = (e) => {
-  //   setInputOnWork(e.target.value);
-  // };
-  // const handleOffWorkChange = (e) => {
-  //   setInputOffWork(e.target.value);
-  // };
 
   useEffect(() => {
     axios
@@ -40,11 +32,8 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
   }, [tableValue.user_id]);
 
   return (
-    <Modal
-      open={showStatusModalOpen}
-      // onClose={handleClose}
-    >
-      <Box sx={ModalStyle(650, 450, 0)} className="status-modal-conatiner">
+    <Modal open={showStatusModalOpen} onClose={modalClose}>
+      <Box sx={ModalStyle(650, 470, 0)} className="status-modal-conatiner">
         <TabContext value={tabValue}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <div className="header">
@@ -63,23 +52,35 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
           </Box>
           <TabPanel value="1" className="tab-summary">
             <div className="top group">
-              <div>
+              <div className="element">
                 <div className="title">지각</div>
-                <div className="count">{status.state_late}회</div>
+                <div className="count">
+                  <span>{status.state_late}</span>회
+                </div>
               </div>
-              <div>
+              <div className="element">
                 <div className="title">결근</div>
-                <div className="count">{status.state_absence}회</div>
-              </div>
-              <div>
-                <div className="title">미체크</div>
-                <div className="count">{status.state_miss_check}회</div>
-              </div>
-              <div>
-                <div className="title">조퇴</div>
-                <div className="count">{status.state_early_check}회</div>
+                <div className="count">
+                  {" "}
+                  <span>{status.state_absence}</span>회
+                </div>
               </div>
             </div>
+            <div className="top group">
+              <div className="element">
+                <div className="title">미체크</div>
+                <div className="count">
+                  <span>{status.state_miss_check}</span>회
+                </div>
+              </div>
+              <div className="element">
+                <div className="title">조퇴</div>
+                <div className="count">
+                  <span>{status.state_early_check}</span>회
+                </div>
+              </div>
+            </div>
+
             {/* <div className="bottom group">
               <div className="element">미체크</div>
               <div className="element">조퇴</div>
