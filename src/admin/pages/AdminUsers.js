@@ -104,6 +104,7 @@ const AdminUsers = () => {
           className="icon"
           style={{ fontSize: 17 }}
           onClick={async () => {
+            setTableValue(params.row);
             setDialogValue(false);
             setShowStatusModalOpen(true);
           }}

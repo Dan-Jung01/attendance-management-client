@@ -17,26 +17,35 @@
   color: white;
 }
 
+.status-modal-conatiner .tab-summary {
+  height: 60%;
+}
+
+.status-modal-conatiner .tab-summary .group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.status-modal-conatiner .tab-summary .group .title {
+  padding: 10px 30px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: var(--navy);
+  color: white;
+}
+
+.status-modal-conatiner .tab-summary .group .count {
+  padding: 10px 30px;
+  background-color: darkgray;
+  color: white;
+  height: 100px;
+}
+
 .status-modal-conatiner .header .btn-close {
   cursor: pointer;
-}
-
-.status-modal-conatiner .body {
-  display: flex;
-  /* justify-content: center; */
-  /* flex-direction: column; */
-  align-items: center;
-  height: auto;
-  padding: 30px;
-  justify-content: space-around;
-}
-
-.status-modal-conatiner .rows .input {
-  border: solid 1px darkgray;
-  border-radius: 5px;
-  padding: 10px 15px;
-  letter-spacing: 5px;
-  margin-top: 5px;
 }
 
 .status-modal-conatiner .btn-container {
