@@ -32,7 +32,7 @@ const EditUserInfoModal = ({ editUserModalOpen, setEditUserModalOpen, tableValue
     setEditUserModalOpen(false);
   };
 
-  const editWorkTime = () => {
+  const editUserInfo = () => {
     axios
       .put(`${API_URL}/user/userInfo`, {
         user_name: inputUserName,
@@ -107,7 +107,7 @@ const EditUserInfoModal = ({ editUserModalOpen, setEditUserModalOpen, tableValue
           <button className="btn-cancle" onClick={modalClose}>
             취소
           </button>
-          <button className="btn-save" onClick={editWorkTime}>
+          <button className="btn-save" onClick={editUserInfo}>
             수정완료
           </button>
         </div>
