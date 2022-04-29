@@ -1,5 +1,6 @@
 import React from "react";
 import "../../css/header.css";
+import { MdLogout } from "react-icons/md";
 
 const Header = () => {
   function handleLogout() {
@@ -10,7 +11,8 @@ const Header = () => {
 
   return (
     <div className="main-header">
-      <button onClick={handleLogout}>로그아웃</button>
+      <div className="logo">logo</div>
+      <MdLogout className="btn-logOut" onClick={handleLogout} />
     </div>
   );
 };

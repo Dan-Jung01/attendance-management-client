@@ -19,8 +19,8 @@
 .work-check {
   display: flex;
   flex-direction: column;
-  border-radius: 4px;
-  height: 300px;
+  border-radius: 15px;
+  height: 200px;
   margin: 0 auto;
   /* text-align: center; */
   align-items: center;
@@ -38,14 +38,14 @@
 }
 
 .work-btn {
-  padding: 20px 40px;
+  padding: 0px 40px;
   background-color: white;
   border: none;
   cursor: pointer;
 }
 
 .home-btn {
-  border-left: wheat 1px solid;
+  border-left: var(--gray) 2px solid;
 }
 
 .work-icon {
