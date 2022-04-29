@@ -1,17 +1,35 @@
 import React from "react";
 import "../../css/leave.css";
+import Calendar from "react-calendar";
+import "../../css/Calendar.css";
+import moment from "moment";
+
+//TODO: 연차 사용 버튼 아이콘 넣기
 
 const Leave = () => {
   return (
-    <div className="work-check-container">
+    <div className="leave-container">
       <h3>Title</h3>
-      <div className="work-check">
-        <div>
-          <h3>Title</h3>
-          <div>10일</div>
+      <div className="leave">
+        <div className="top">
+          <div className="left">
+            <h3>남은 연차</h3>
+            <div>
+              <span className="date">10</span>일
+            </div>
+          </div>
+          <div className="right">
+            <button className="btn-use">사용</button>
+          </div>
         </div>
-        <div className="leave-btn-container">
-          <button>use</button>
+        <div className="calendar">
+          <Calendar
+            calendarType="US"
+            // maxDetail="year"
+            // minDetail="year"
+            showNeighboringMonth={false}
+            formatDay={(locale, date) => moment(date).format("DD")}
+          />
         </div>
       </div>
     </div>
