@@ -67,7 +67,7 @@ const EditUserInfoModal = ({ editUserModalOpen, setEditUserModalOpen, tableValue
             </div>
           </div>
           <div className="rows">
-            <div className="title">아이디</div>
+            <div className="title">아이디 (수정불가)</div>
             <div className="input-coord-container coords-input">
               <input
                 type="text"
