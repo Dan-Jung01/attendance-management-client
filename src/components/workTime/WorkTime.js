@@ -3,7 +3,9 @@ import moment from "moment";
 import Clock from "react-live-clock";
 import "../../css/workTime.css";
 import { FaChild, FaRunning } from "react-icons/fa";
+import { MdArrowDropDown } from "react-icons/md";
 import axios from "axios";
+import { AiFillCaretDown } from "react-icons/ai";
 
 const WorkTime = ({ userName, userId }) => {
   const [startTime, setStartTime] = useState();
@@ -93,7 +95,9 @@ const WorkTime = ({ userName, userId }) => {
 
   return (
     <div className="work-check-container">
-      <h3>Title</h3>
+      <h3>
+        <AiFillCaretDown className="icon-arrow" /> 출퇴근
+      </h3>
       <div className="work-check">
         <div className="cur-data">
           <Clock className="cur-date" format={`YYYY / MM / DD`} timezone={`Asia/Seoul`} />

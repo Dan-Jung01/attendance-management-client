@@ -15,7 +15,7 @@ const Leave = () => {
           <div className="left">
             <h3>남은 연차</h3>
             <div>
-              <span className="date">10</span>일
+              <span className="date">4</span>일
             </div>
           </div>
           <div className="right">
