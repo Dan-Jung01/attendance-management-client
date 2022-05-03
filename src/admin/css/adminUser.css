@@ -25,6 +25,8 @@
   padding: 10px 20px;
   color: white;
   border: 1px solid var(--gray);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .admin-work-container .header .input {
@@ -33,7 +35,6 @@
   border-bottom: 1px solid white;
   width: 30%;
   padding: 10px;
-  /* outline: 1px solid var(--orange); */
   outline: none;
 }
 
