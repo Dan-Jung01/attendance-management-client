@@ -6,6 +6,14 @@
   --gray: #eaeaea;
 }
 
+.useLeave-modal-conatiner .body-wrapper {
+  height: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0px;
+}
+
 .useLeave-modal-conatiner .header {
   font-size: 20px;
   padding: 15px;
@@ -21,21 +29,32 @@
   flex-direction: column;
   align-items: center;
   height: auto;
-  padding: 20px;
+  padding: 10px 20px;
 
   /* justify-content: space-around; */
 }
 
 .useLeave-modal-conatiner .rows {
   width: 100%;
-  margin-top: 17px;
+  margin-bottom: 17px;
+}
+
+.useLeave-modal-conatiner .rows .date {
+  padding: 10px 5px;
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.useLeave-modal-conatiner .rows .date .date-picker {
+  width: 100%;
 }
 
 .useLeave-modal-conatiner .rows .inputarea {
   border: solid 1px darkgray;
   border-radius: 5px;
   padding: 10px 15px;
-  letter-spacing: 2px;
+  /* letter-spacing: 2px; */
   margin-top: 5px;
   width: 100%;
   height: 100px;
