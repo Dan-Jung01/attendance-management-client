@@ -66,6 +66,7 @@ const WorkTime = ({ userName, userId }) => {
   };
 
   useEffect(() => {
+    let isMount = true;
     try {
       async function getUserWorkTime() {
         const userWorkTime = await axios.get(`${API_URL}/on-work-time`, {
@@ -74,15 +75,20 @@ const WorkTime = ({ userName, userId }) => {
             today_date: curDate,
           },
         });
-        setStartTime(userWorkTime.data.on_work);
-        // console.log(typeof new Date(userWorkTime.data.on_work));
-        setEndTime(userWorkTime.data.off_work);
-        // return userWorkTime;
+        if (isMount) {
+          setStartTime(userWorkTime.data.on_work);
+          // console.log(typeof new Date(userWorkTime.data.on_work));
+          setEndTime(userWorkTime.data.off_work);
+          // return userWorkTime;
+        }
       }
       getUserWorkTime();
     } catch (err) {
       console.log(err);
     }
+    return () => {
+      isMount = false;
+    };
   }, [curDate, userName, startTime, endTime]);
 
   // useEffect(() => {
