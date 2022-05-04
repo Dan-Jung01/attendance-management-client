@@ -1,0 +1,66 @@
+:root {
+  --orange: #dd6e42;
+  --yellow: #e8dab2;
+  --navy: #4f6d7a;
+  --skyBlue: #c0d6df;
+  --gray: #eaeaea;
+}
+
+.useLeave-modal-conatiner .header {
+  font-size: 20px;
+  padding: 15px;
+  background-color: var(--navy);
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
+  color: white;
+}
+
+.useLeave-modal-conatiner .body {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  padding: 20px;
+
+  /* justify-content: space-around; */
+}
+
+.useLeave-modal-conatiner .rows {
+  width: 100%;
+  margin-top: 17px;
+}
+
+.useLeave-modal-conatiner .rows .inputarea {
+  border: solid 1px darkgray;
+  border-radius: 5px;
+  padding: 10px 15px;
+  letter-spacing: 2px;
+  margin-top: 5px;
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+.useLeave-modal-conatiner .btn-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.useLeave-modal-conatiner .btn-container > button {
+  padding: 10px;
+  margin: 0px 10px;
+  border-radius: 5px;
+  width: 60%;
+}
+
+.useLeave-modal-conatiner .btn-container .btn-save {
+  background-color: var(--navy);
+  color: white;
+}
+
+.useLeave-modal-conatiner .btn-container .btn-cancle {
+  background-color: darkgray;
+  color: white;
+}

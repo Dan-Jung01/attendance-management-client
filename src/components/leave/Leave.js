@@ -1,12 +1,14 @@
-import React from "react";
-import "../../css/leave.css";
+import React, { useState } from "react";
+import UseLeaveModal from "./UseLeaveModal";
 import Calendar from "react-calendar";
 import "../../css/Calendar.css";
+import "../../css/leave.css";
 import moment from "moment";
 
 //TODO: 연차 사용 버튼 아이콘 넣기
 
 const Leave = () => {
+  const [useLeaveModalOpen, setUseLeaveModalOpen] = useState(false);
   return (
     <div className="leave-container">
       <h3>Title</h3>
@@ -19,7 +21,9 @@ const Leave = () => {
             </div>
           </div>
           <div className="right">
-            <button className="btn-use">사용</button>
+            <button className="btn-use" onClick={() => setUseLeaveModalOpen(true)}>
+              사용
+            </button>
           </div>
         </div>
         <div className="calendar">
@@ -32,6 +36,7 @@ const Leave = () => {
           />
         </div>
       </div>
+      <UseLeaveModal useLeaveModalOpen={useLeaveModalOpen} setUseLeaveModalOpen={setUseLeaveModalOpen} />
     </div>
   );
 };
