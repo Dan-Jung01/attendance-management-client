@@ -8,6 +8,7 @@ import AdminMain from "../admin/pages/AdminMain";
 import Register from "../admin/components/register/Register";
 import AdminUsers from "../admin/pages/AdminUsers";
 import AdminWork from "../admin/pages/AdminWork";
+import AdminLeave from "../admin/pages/AdminLeave";
 
 import MyPage from "../pages/MyPage";
 import PrivateRoute from "./PrivateRoute";
@@ -67,6 +68,10 @@ const Router = () => {
 
         <PrivateRoute path="/admin-users" exact>
           <AdminUsers />
+        </PrivateRoute>
+
+        <PrivateRoute path="/admin-leave" exact>
+          <AdminLeave />
         </PrivateRoute>
 
         {/* <PublicRoute restricted={true} component={SignIn} path="/login" exact /> */}
