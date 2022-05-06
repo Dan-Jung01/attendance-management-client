@@ -30,11 +30,13 @@
 .admin-work-container .header .input {
   background-color: var(--navy);
   color: white;
-  border-bottom: 1px solid white;
+  /* border-bottom: 1px solid white; */
   width: 30%;
   padding: 10px;
   /* outline: 1px solid var(--orange); */
   outline: none;
+  border: 1px solid white;
+  border-radius: 15px;
 }
 
 .admin-work-container .header .input::placeholder {
