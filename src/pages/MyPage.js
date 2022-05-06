@@ -7,7 +7,7 @@ const MyPage = ({ userName, userId }) => {
   return (
     <Container>
       <WorkTime userName={userName} userId={userId} />
-      <Leave />
+      <Leave userName={userName} userId={userId} />
       {/* <State /> */}
     </Container>
   );

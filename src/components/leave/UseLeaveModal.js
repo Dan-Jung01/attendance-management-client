@@ -10,8 +10,9 @@ import moment from "moment";
 
 import axios from "axios";
 
-const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen }) => {
+const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, userId }) => {
   const API_URL = "http://localhost:3003";
+  const curDate = moment().format("YYYY-MM-DD");
   const [startDate, setStartDate] = useState(new Date());
   // const [startDate, setStartDate] = useState(new Date(moment().format("yyyy-MM-DD")));
   // const [startDate, setStartDate] = useState(moment().format("yyyy-MM-DD"));
@@ -50,6 +51,27 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen }) => {
 
   const modalClose = () => {
     setUseLeaveModalOpen(false);
+  };
+
+  const handleSubmit = () => {
+    // const curTime = moment().format("HH:mm:ss");
+    // axios
+    //   .post(`${API_URL}/user/break`, {
+    //     on_work: curTime,
+    //     today_date: curDate,
+    //     user_name: userName,
+    //     user_id: userId,
+    //   })
+    //   .then(setStartTime(curTime))
+    //   .then(() => {
+    //     if (recordedStartTime.isAfter(onTime)) {
+    //       axios
+    //         .put(`${API_URL}/late-status`, {
+    //           user_id: userId,
+    //         })
+    //         .then(console.log("late-status checked"));
+    //     } else return;
+    //   });
   };
 
   // const editUserInfo = () => {

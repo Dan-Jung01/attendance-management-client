@@ -7,7 +7,7 @@ import moment from "moment";
 
 //TODO: 연차 사용 버튼 아이콘 넣기
 
-const Leave = () => {
+const Leave = ({ userName, userId }) => {
   const [useLeaveModalOpen, setUseLeaveModalOpen] = useState(false);
   return (
     <div className="leave-container">
@@ -36,7 +36,12 @@ const Leave = () => {
           />
         </div>
       </div>
-      <UseLeaveModal useLeaveModalOpen={useLeaveModalOpen} setUseLeaveModalOpen={setUseLeaveModalOpen} />
+      <UseLeaveModal
+        useLeaveModalOpen={useLeaveModalOpen}
+        setUseLeaveModalOpen={setUseLeaveModalOpen}
+        userName={userName}
+        userId={userId}
+      />
     </div>
   );
 };
