@@ -53,25 +53,17 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
     setUseLeaveModalOpen(false);
   };
 
+  //TODO: 연차사용 API 수정
   const handleSubmit = () => {
-    // const curTime = moment().format("HH:mm:ss");
-    // axios
-    //   .post(`${API_URL}/user/break`, {
-    //     on_work: curTime,
-    //     today_date: curDate,
-    //     user_name: userName,
-    //     user_id: userId,
-    //   })
-    //   .then(setStartTime(curTime))
-    //   .then(() => {
-    //     if (recordedStartTime.isAfter(onTime)) {
-    //       axios
-    //         .put(`${API_URL}/late-status`, {
-    //           user_id: userId,
-    //         })
-    //         .then(console.log("late-status checked"));
-    //     } else return;
-    //   });
+    axios
+      .post(`${API_URL}/user/break`, {
+        start_date: sDate,
+        end_date: eDate,
+        today_date: curDate,
+        user_name: userName,
+        user_id: userId,
+      })
+      .then(alert("제출이 완료되었습니다"));
   };
 
   // const editUserInfo = () => {
@@ -131,7 +123,9 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
             <button className="btn-cancle" onClick={modalClose}>
               취소
             </button>
-            <button className="btn-save">제출</button>
+            <button className="btn-save" onClick={handleSubmit}>
+              제출
+            </button>
           </div>
         </div>
       </Box>
