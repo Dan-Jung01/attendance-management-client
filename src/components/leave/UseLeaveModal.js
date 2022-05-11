@@ -14,6 +14,7 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
   const API_URL = "http://localhost:3003";
   const curDate = moment().format("YYYY-MM-DD");
   const [startDate, setStartDate] = useState(new Date());
+  const [reason, setReason] = useState("");
   // const [startDate, setStartDate] = useState(new Date(moment().format("yyyy-MM-DD")));
   // const [startDate, setStartDate] = useState(moment().format("yyyy-MM-DD"));
   const [endDate, setEndDate] = useState(null);
@@ -35,6 +36,8 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
   console.log(eDate);
 
   console.log(useLeaveDateCount);
+
+  console.log(reason);
 
   // const handleNameChange = (e) => {
   //   setInputUserName(e.target.value);
@@ -62,6 +65,7 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
         today_date: curDate,
         user_name: userName,
         user_id: userId,
+        reason: reason,
       })
       .then(alert("제출이 완료되었습니다"));
   };
@@ -114,7 +118,9 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
                   className="inputarea"
                   placeholder="연차 사용 목적을 적어주세요"
                   autoresize="false"
-                  // onChange={handleNameChange}
+                  onChange={(e) => {
+                    setReason(e.target.value);
+                  }}
                 />
               </div>
             </div>
