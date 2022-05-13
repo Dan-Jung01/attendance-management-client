@@ -6,7 +6,6 @@ import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import ko from "date-fns/locale/ko";
 import "../../css/Datepicker.css";
 import moment from "moment";
-// import "react-datepicker/dist/react-datepicker.css";
 
 import axios from "axios";
 
@@ -15,8 +14,6 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
   const curDate = moment().format("YYYY-MM-DD");
   const [startDate, setStartDate] = useState(new Date());
   const [reason, setReason] = useState("");
-  // const [startDate, setStartDate] = useState(new Date(moment().format("yyyy-MM-DD")));
-  // const [startDate, setStartDate] = useState(moment().format("yyyy-MM-DD"));
   const [endDate, setEndDate] = useState(null);
   registerLocale("ko", ko);
 
@@ -30,27 +27,12 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
 
   const sDate = moment(startDate).format("yyyy-MM-DD");
   const eDate = moment(endDate).format("yyyy-MM-DD");
-  // const sDate = moment(startDate.format("yyyy-MM-DD"));
-  // console.log(startDate);
   console.log(sDate);
   console.log(eDate);
 
   console.log(useLeaveDateCount);
 
   console.log(reason);
-
-  // const handleNameChange = (e) => {
-  //   setInputUserName(e.target.value);
-  // };
-  // const handleIdChange = (e) => {
-  //   setInputUserId(e.target.value);
-  // };
-  // const handlePhoneNumChange = (e) => {
-  //   setInputPhoneNum(e.target.value);
-  // };
-  // const handleStartDateChange = (e) => {
-  //   setInputStartDate(e.target.value);
-  // };
 
   const modalClose = () => {
     setUseLeaveModalOpen(false);
@@ -70,23 +52,8 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
       .then(alert("제출이 완료되었습니다"));
   };
 
-  // const editUserInfo = () => {
-  //   axios
-  //     .put(`${API_URL}/user/userInfo`, {
-  //       user_name: inputUserName,
-  //       user_id: tableValue.user_id,
-  //       phone: inputPhoneNum,
-  //       start_date: inputStartDate,
-  //     })
-  //     .then(alert("수정이 완료되었습니다"))
-  //     .then(setEditUserModalOpen(false));
-  // };
-
   return (
-    <Modal
-      open={useLeaveModalOpen}
-      // onClose={handleClose}
-    >
+    <Modal open={useLeaveModalOpen}>
       <Box sx={ModalStyle(300, 370, 0)} className="useLeave-modal-conatiner">
         <div className="header">
           <h2>연차 사용</h2>
