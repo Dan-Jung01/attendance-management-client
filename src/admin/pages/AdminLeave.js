@@ -57,7 +57,7 @@ const AdminLeave = () => {
       field: "reason",
       headerName: "사유",
       type: "number",
-      flex: 2,
+      flex: 3,
       align: "center",
       headerAlign: "center",
     },
@@ -118,7 +118,7 @@ const AdminLeave = () => {
   const deleteUser = async (selectedTableValue) => {
     const answer = window.confirm("삭제하시겠습니까?");
     if (answer) {
-      await axios.delete(`${API_URL}/user/userInfo/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
+      await axios.delete(`${API_URL}/user/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
       setDialogValue(true);
     } else {
       return;
