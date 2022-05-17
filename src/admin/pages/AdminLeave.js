@@ -90,7 +90,7 @@ const AdminLeave = () => {
           style={{ fontSize: 17 }}
           onClick={async () => {
             setDialogValue(false);
-            deleteUser(params.row);
+            deleteBreak(params.row);
           }}
         />
       ),
@@ -115,10 +115,10 @@ const AdminLeave = () => {
     },
   ];
 
-  const deleteUser = async (selectedTableValue) => {
+  const deleteBreak = async (selectedTableValue) => {
     const answer = window.confirm("삭제하시겠습니까?");
     if (answer) {
-      await axios.delete(`${API_URL}/user/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
+      await axios.delete(`${API_URL}/user/break/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
       setDialogValue(true);
     } else {
       return;
