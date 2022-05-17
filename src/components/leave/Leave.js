@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import UseLeaveModal from "./UseLeaveModal";
 import Calendar from "react-calendar";
+import moment from "moment";
+import { AiFillCaretDown } from "react-icons/ai";
 import "../../css/Calendar.css";
 import "../../css/leave.css";
-import moment from "moment";
-
-//TODO: 연차 사용 버튼 아이콘 넣기
 
 const Leave = ({ userName, userId }) => {
   const [useLeaveModalOpen, setUseLeaveModalOpen] = useState(false);
   return (
     <div className="leave-container">
-      <h3>Title</h3>
+      <h3>
+        <AiFillCaretDown className="icon-arrow" /> 연차
+      </h3>
       <div className="leave">
         <div className="top">
           <div className="left">
