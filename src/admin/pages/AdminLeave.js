@@ -29,7 +29,13 @@ const AdminLeave = () => {
       columns: "center",
       headerAlign: "center",
     },
-
+    {
+      field: "today_date",
+      headerName: "신청일",
+      flex: 2,
+      align: "center",
+      headerAlign: "center",
+    },
     {
       field: "user_name",
       headerName: "이름",
