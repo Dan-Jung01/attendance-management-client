@@ -7,18 +7,25 @@ import Box from "@mui/material/Box";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { RiPagesLine } from "react-icons/ri";
-import EditUserInfoModal from "../components/modal/userManagement/EditUserInfoModal";
+
 import ShowStatusModal from "../components/modal/userManagement/ShowStatusModal";
+import EditBreakStatusModal from "../components/modal/leaveStatus/EditBreakStatusModal";
 
 const AdminLeave = () => {
-  const [editUserModalOpen, setEditUserModalOpen] = useState(false);
   const [showStatusModalOpen, setShowStatusModalOpen] = useState(false);
-  const [tableValue, setTableValue] = useState({});
   const [dialogValue, setDialogValue] = useState(false);
   const [searchWord, setSearchWord] = useState("");
+  const [tableValue, setTableValue] = useState();
+  const [editBreakStatusModalOpen, setEditBreakStatusModalOpen] = useState(false);
 
   const API_URL = "http://localhost:3003";
   const [users, setUsers] = useState([]);
+
+  const handleOnCellClick = (params) => {
+    setTableValue(params);
+    console.log(params.row);
+    setEditBreakStatusModalOpen(true);
+  };
 
   const columns = [
     {
@@ -67,23 +74,6 @@ const AdminLeave = () => {
       align: "center",
       headerAlign: "center",
     },
-    // {
-    //   field: "reason",
-    //   headerName: "사유",
-    //   flex: 2,
-    //   align: "center",
-    //   headerAlign: "center",
-    //   renderCell: (params) => (
-    //     <FiEdit
-    //       className="icon"
-    //       style={{ fontSize: 17 }}
-    //       onClick={() => {
-    //         setTableValue(params.row);
-    //         setEditUserModalOpen(true);
-    //       }}
-    //     />
-    //   ),
-    // },
     {
       field: "delete",
       headerName: "삭제",
@@ -104,20 +94,9 @@ const AdminLeave = () => {
     {
       field: "status",
       headerName: "상태",
-      flex: 1,
+      flex: 3,
       align: "center",
       headerAlign: "center",
-      renderCell: (params) => (
-        <RiPagesLine
-          className="icon"
-          style={{ fontSize: 17 }}
-          onClick={async () => {
-            setTableValue(params.row);
-            setDialogValue(false);
-            setShowStatusModalOpen(true);
-          }}
-        />
-      ),
     },
   ];
 
@@ -143,7 +122,7 @@ const AdminLeave = () => {
     axios.get(`${API_URL}/user/break`).then(async (res) => {
       setUsers(res?.data);
     });
-  }, [editUserModalOpen, dialogValue]);
+  }, [dialogValue]);
 
   return (
     <AdminContainer>
@@ -180,16 +159,12 @@ const AdminLeave = () => {
           pageSize={25}
           rowsPerPageOptions={[25]}
           checkboxSelection={false}
+          onCellClick={handleOnCellClick}
         />
       </Box>
-      <EditUserInfoModal
-        editUserModalOpen={editUserModalOpen}
-        setEditUserModalOpen={setEditUserModalOpen}
-        tableValue={tableValue}
-      />
-      <ShowStatusModal
-        showStatusModalOpen={showStatusModalOpen}
-        setShowStatusModalOpen={setShowStatusModalOpen}
+      <EditBreakStatusModal
+        editBreakStatusModalOpen={editBreakStatusModalOpen}
+        setEditBreakStatusModalOpen={setEditBreakStatusModalOpen}
         tableValue={tableValue}
       />
     </AdminContainer>

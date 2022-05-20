@@ -7,7 +7,7 @@ import "../../../css/modal/editWorkTimeModal.css";
 
 import axios from "axios";
 
-const EditBreakStatusModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen, tableValue }) => {
+const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModalOpen, tableValue }) => {
   const [inputOnWork, setInputOnWork] = useState(tableValue?.on_work);
   const [inputOffWork, setInputOffWork] = useState(tableValue?.off_work);
 
@@ -21,7 +21,7 @@ const EditBreakStatusModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen,
   };
 
   const modalClose = () => {
-    setEditWorkTimeModalOpen(false);
+    setEditBreakStatusModalOpen(false);
   };
 
   const editWorkTime = () => {
@@ -33,17 +33,17 @@ const EditBreakStatusModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen,
         user_id: tableValue.user_id,
       })
       .then(alert("수정이 완료되었습니다"))
-      .then(setEditWorkTimeModalOpen(false));
+      .then(setEditBreakStatusModalOpen(false));
   };
 
   return (
     <Modal
-      open={editWorkTimeModalOpen}
+      open={editBreakStatusModalOpen}
       // onClose={handleClose}
     >
       <Box sx={ModalStyle(450, 250, 0)} className="workTime-modal-conatiner">
         <div className="header">
-          <h2>사용자 출퇴근 시간 수정</h2>
+          <h2>연차사용 요청 승인</h2>
         </div>
         <div className="body">
           <div className="rows">
@@ -52,7 +52,7 @@ const EditBreakStatusModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen,
               <input
                 type="text"
                 className="input"
-                defaultValue={tableValue.on_work}
+                // defaultValue={tableValue.on_work}
                 placeholder="출근시간"
                 onChange={handleOnWorkChange}
               />
@@ -64,7 +64,7 @@ const EditBreakStatusModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen,
               <input
                 type="text"
                 className="input"
-                defaultValue={tableValue.off_work}
+                // defaultValue={tableValue.off_work}
                 placeholder="퇴근시간"
                 onChange={handleOffWorkChange}
               />
