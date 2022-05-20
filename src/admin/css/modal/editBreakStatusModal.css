@@ -6,7 +6,7 @@
   --gray: #eaeaea;
 }
 
-.workTime-modal-conatiner .header {
+.breakStatus-modal-conatiner .header {
   font-size: 20px;
   padding: 20px;
   background-color: var(--navy);
@@ -15,43 +15,57 @@
   color: white;
 }
 
-.workTime-modal-conatiner .body {
+.breakStatus-modal-conatiner .body {
   display: flex;
   /* justify-content: center; */
   /* flex-direction: column; */
   align-items: center;
   height: auto;
   padding: 30px;
-  justify-content: space-around;
+  justify-content: center;
 }
 
-.workTime-modal-conatiner .rows .input {
+/* .breakStatus-modal-conatiner .rows .input {
   border: solid 1px darkgray;
   border-radius: 5px;
   padding: 10px 15px;
   letter-spacing: 5px;
   margin-top: 5px;
+} */
+
+.form-control {
+  width: 100%;
+  border: 1px solid var(--skyBlue);
+  border-radius: 15px;
+  padding: 10px 20px;
 }
 
-.workTime-modal-conatiner .btn-container {
+.breakStatus-modal-conatiner .radio-group {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.breakStatus-modal-conatiner .btn-container {
   display: flex;
   justify-content: flex-end;
   /* margin-right: 10px; */
   padding: 10px 30px;
 }
 
-.workTime-modal-conatiner .btn-container > button {
+.breakStatus-modal-conatiner .btn-container > button {
   padding: 10px 30px;
   margin: 0px 10px;
   border-radius: 5px;
 }
 
-.workTime-modal-conatiner .btn-container .btn-save {
+.breakStatus-modal-conatiner .btn-container .btn-save {
   background-color: var(--navy);
   color: white;
 }
 
-.workTime-modal-conatiner .btn-container .btn-cancle {
+.breakStatus-modal-conatiner .btn-container .btn-cancle {
   background-color: darkgray;
   color: white;
 }

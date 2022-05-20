@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import { Box, Modal } from "@mui/material";
+import { Box, Modal, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from "@mui/material";
 
 import ModalStyle from "../../../../utils/ModalStyle";
-import "../../../css/modal/editWorkTimeModal.css";
+import "../../../css/modal/editBreakStatusModal.css";
 
 import axios from "axios";
 
@@ -37,16 +37,13 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
   };
 
   return (
-    <Modal
-      open={editBreakStatusModalOpen}
-      // onClose={handleClose}
-    >
-      <Box sx={ModalStyle(450, 250, 0)} className="workTime-modal-conatiner">
+    <Modal open={editBreakStatusModalOpen}>
+      <Box sx={ModalStyle(450, 250, 0)} className="breakStatus-modal-conatiner">
         <div className="header">
           <h2>연차사용 요청 승인</h2>
         </div>
         <div className="body">
-          <div className="rows">
+          {/* <div className="rows">
             <div className="title">출근시간</div>
             <div className="input-coord-container">
               <input
@@ -57,18 +54,14 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
                 onChange={handleOnWorkChange}
               />
             </div>
-          </div>
-          <div className="rows">
-            <div className="title">퇴근시간</div>
-            <div className="input-coord-container coords-input">
-              <input
-                type="text"
-                className="input"
-                // defaultValue={tableValue.off_work}
-                placeholder="퇴근시간"
-                onChange={handleOffWorkChange}
-              />
-            </div>
+          </div> */}
+
+          <div className="rows form-control">
+            <RadioGroup defaultValue="DEFER" className="radio-group">
+              <FormControlLabel value="APPROVED" control={<Radio />} label="승인" />
+              <FormControlLabel value="DEFER" control={<Radio />} label="대기" />
+              <FormControlLabel value="REJECTED" control={<Radio />} label="반려" />
+            </RadioGroup>
           </div>
         </div>
         <div className="btn-container">
