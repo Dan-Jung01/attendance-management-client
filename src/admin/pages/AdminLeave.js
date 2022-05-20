@@ -4,15 +4,10 @@ import AdminContainer from "../components/AdminContainer";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { RiPagesLine } from "react-icons/ri";
-
-import ShowStatusModal from "../components/modal/userManagement/ShowStatusModal";
 import EditBreakStatusModal from "../components/modal/leaveStatus/EditBreakStatusModal";
 
 const AdminLeave = () => {
-  const [showStatusModalOpen, setShowStatusModalOpen] = useState(false);
   const [dialogValue, setDialogValue] = useState(false);
   const [searchWord, setSearchWord] = useState("");
   const [tableValue, setTableValue] = useState();
@@ -122,7 +117,7 @@ const AdminLeave = () => {
     axios.get(`${API_URL}/user/break`).then(async (res) => {
       setUsers(res?.data);
     });
-  }, [dialogValue]);
+  }, [editBreakStatusModalOpen]);
 
   return (
     <AdminContainer>
