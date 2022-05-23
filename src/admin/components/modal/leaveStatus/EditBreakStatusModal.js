@@ -10,19 +10,15 @@ import axios from "axios";
 const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModalOpen, tableValue }) => {
   const [inputOnWork, setInputOnWork] = useState(tableValue?.on_work);
   const [inputOffWork, setInputOffWork] = useState(tableValue?.off_work);
+  const [radioValue, setRadioValue] = useState(tableValue?.row.status);
 
   const API_URL = "http://localhost:3003";
-
-  const handleOnWorkChange = (e) => {
-    setInputOnWork(e.target.value);
-  };
-  const handleOffWorkChange = (e) => {
-    setInputOffWork(e.target.value);
-  };
 
   const modalClose = () => {
     setEditBreakStatusModalOpen(false);
   };
+
+  console.log(tableValue?.row.status);
 
   const editWorkTime = () => {
     axios
@@ -35,6 +31,12 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
       .then(alert("수정이 완료되었습니다"))
       .then(setEditBreakStatusModalOpen(false));
   };
+
+  const handleRadioChange = (e) => {
+    setRadioValue(e.target.value);
+  };
+
+  console.log(radioValue);
 
   return (
     <Modal open={editBreakStatusModalOpen}>
@@ -57,11 +59,18 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
           </div> */}
 
           <div className="rows form-control">
-            <RadioGroup defaultValue="DEFER" className="radio-group">
-              <FormControlLabel value="APPROVED" control={<Radio />} label="승인" />
-              <FormControlLabel value="DEFER" control={<Radio />} label="대기" />
-              <FormControlLabel value="REJECTED" control={<Radio />} label="반려" />
-            </RadioGroup>
+            <FormControl>
+              <RadioGroup
+                defaultValue="APPROVED"
+                value={radioValue}
+                className="radio-group"
+                onChange={handleRadioChange}
+              >
+                <FormControlLabel value="APPROVED" control={<Radio />} label="승인" />
+                <FormControlLabel value="DEFER" control={<Radio />} label="대기" />
+                <FormControlLabel value="REJECTED" control={<Radio />} label="반려" />
+              </RadioGroup>
+            </FormControl>
           </div>
         </div>
         <div className="btn-container">
