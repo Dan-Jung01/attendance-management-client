@@ -8,9 +8,8 @@ import "../../../css/modal/editBreakStatusModal.css";
 import axios from "axios";
 
 const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModalOpen, tableValue }) => {
-  const [inputOnWork, setInputOnWork] = useState(tableValue?.on_work);
-  const [inputOffWork, setInputOffWork] = useState(tableValue?.off_work);
-  const [radioValue, setRadioValue] = useState(tableValue?.row.status);
+  const [radioValue, setRadioValue] = useState(tableValue?.status || "DEFER");
+  const [cellValue, setCellValue] = useState(tableValue);
 
   const API_URL = "http://localhost:3003";
 
@@ -18,25 +17,26 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
     setEditBreakStatusModalOpen(false);
   };
 
-  console.log(tableValue?.row.status);
-
-  const editWorkTime = () => {
-    axios
-      .put(`${API_URL}/both-work-time`, {
-        on_work: inputOnWork,
-        off_work: inputOffWork,
-        today_date: tableValue.today_date,
-        user_id: tableValue.user_id,
-      })
-      .then(alert("수정이 완료되었습니다"))
-      .then(setEditBreakStatusModalOpen(false));
+  const editApproval = async () => {
+    try {
+      await axios
+        .put(`${API_URL}/user/break/approval`, {
+          status: radioValue,
+          id: tableValue?.id,
+          // user_id: tableValue?.user_id,
+          // today_date: tableValue?.today_date,
+        })
+        .then(alert("수정이 완료되었습니다"))
+        .then(setEditBreakStatusModalOpen(false));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleRadioChange = (e) => {
+    setCellValue(tableValue?.user_id);
     setRadioValue(e.target.value);
   };
-
-  console.log(radioValue);
 
   return (
     <Modal open={editBreakStatusModalOpen}>
@@ -61,7 +61,7 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
           <div className="rows form-control">
             <FormControl>
               <RadioGroup
-                defaultValue="APPROVED"
+                // defaultValue={tableValue?.row.status}
                 value={radioValue}
                 className="radio-group"
                 onChange={handleRadioChange}
@@ -77,8 +77,8 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
           <button className="btn-cancle" onClick={modalClose}>
             취소
           </button>
-          <button className="btn-save" onClick={editWorkTime}>
-            수정완료
+          <button className="btn-save" onClick={editApproval}>
+            수정
           </button>
         </div>
       </Box>
