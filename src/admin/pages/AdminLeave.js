@@ -17,7 +17,7 @@ const AdminLeave = () => {
   const [users, setUsers] = useState([]);
 
   const handleOnCellClick = (params) => {
-    setTableValue(params);
+    setTableValue(params.row);
     console.log(params.row);
     setEditBreakStatusModalOpen(true);
   };
