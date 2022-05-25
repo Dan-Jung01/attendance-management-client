@@ -33,6 +33,11 @@
   margin-top: 5px;
 } */
 
+.btn-status {
+  font-size: 13px !important;
+  background-color: transparent;
+}
+
 .form-control {
   width: 100%;
   border: 1px solid var(--skyBlue);
@@ -40,7 +45,7 @@
   padding: 10px 20px;
 }
 
-.breakStatus-modal-conatiner .radio-group {
+.breakStatus-modal-conatiner .form-control .radio-group {
   width: 100%;
   display: flex;
   flex-direction: row;
