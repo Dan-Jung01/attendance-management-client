@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import { Box, Modal, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from "@mui/material";
+import { Box, Modal, Radio, RadioGroup, FormControlLabel } from "@mui/material";
 
 import ModalStyle from "../../../../utils/ModalStyle";
 import "../../../css/modal/editBreakStatusModal.css";
@@ -8,7 +8,7 @@ import "../../../css/modal/editBreakStatusModal.css";
 import axios from "axios";
 
 const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModalOpen, tableValue }) => {
-  const [radioValue, setRadioValue] = useState(tableValue?.status || "DEFER");
+  const [radioValue, setRadioValue] = useState({});
   const [cellValue, setCellValue] = useState(tableValue);
 
   const API_URL = "http://localhost:3003";
@@ -38,6 +38,10 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
     setRadioValue(e.target.value);
   };
 
+  useEffect(() => {
+    setRadioValue(tableValue?.status);
+  }, [tableValue]);
+
   return (
     <Modal open={editBreakStatusModalOpen}>
       <Box sx={ModalStyle(450, 250, 0)} className="breakStatus-modal-conatiner">
@@ -59,18 +63,16 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
           </div> */}
 
           <div className="rows form-control">
-            <FormControl>
-              <RadioGroup
-                // defaultValue={tableValue?.row.status}
-                value={radioValue}
-                className="radio-group"
-                onChange={handleRadioChange}
-              >
-                <FormControlLabel value="APPROVED" control={<Radio />} label="승인" />
-                <FormControlLabel value="DEFER" control={<Radio />} label="대기" />
-                <FormControlLabel value="REJECTED" control={<Radio />} label="반려" />
-              </RadioGroup>
-            </FormControl>
+            <RadioGroup
+              // defaultValue={tableValue?.row.status}
+              value={radioValue}
+              className="radio-group"
+              onChange={handleRadioChange}
+            >
+              <FormControlLabel value="APPROVED" control={<Radio />} label="승인" />
+              <FormControlLabel value="DEFER" control={<Radio />} label="대기" />
+              <FormControlLabel value="REJECTED" control={<Radio />} label="반려" />
+            </RadioGroup>
           </div>
         </div>
         <div className="btn-container">
