@@ -10,17 +10,11 @@ import EditBreakStatusModal from "../components/modal/leaveStatus/EditBreakStatu
 const AdminLeave = () => {
   const [dialogValue, setDialogValue] = useState(false);
   const [searchWord, setSearchWord] = useState("");
-  const [tableValue, setTableValue] = useState();
+  const [tableValue, setTableValue] = useState({});
   const [editBreakStatusModalOpen, setEditBreakStatusModalOpen] = useState(false);
 
   const API_URL = "http://localhost:3003";
   const [users, setUsers] = useState([]);
-
-  const handleOnCellClick = (params) => {
-    setTableValue(params.row);
-    console.log(params.row);
-    setEditBreakStatusModalOpen(true);
-  };
 
   const columns = [
     {
@@ -92,6 +86,19 @@ const AdminLeave = () => {
       flex: 3,
       align: "center",
       headerAlign: "center",
+      renderCell: (params) => (
+        <button
+          className="btn-status"
+          style={{ fontSize: 17 }}
+          onClick={async () => {
+            setEditBreakStatusModalOpen(true);
+            setTableValue(params.row);
+            setDialogValue(false);
+          }}
+        >
+          {params.row.status}
+        </button>
+      ),
     },
   ];
 
@@ -117,7 +124,7 @@ const AdminLeave = () => {
     axios.get(`${API_URL}/user/break`).then(async (res) => {
       setUsers(res?.data);
     });
-  }, [editBreakStatusModalOpen]);
+  }, [editBreakStatusModalOpen, dialogValue]);
 
   return (
     <AdminContainer>
@@ -138,7 +145,7 @@ const AdminLeave = () => {
         }}
       >
         <div className="header">
-          <div>총 {filtering.length}명</div>
+          <div>총 {filtering.length}건</div>
           <input
             className="input"
             type={"text"}
@@ -154,7 +161,6 @@ const AdminLeave = () => {
           pageSize={25}
           rowsPerPageOptions={[25]}
           checkboxSelection={false}
-          onCellClick={handleOnCellClick}
         />
       </Box>
       <EditBreakStatusModal
