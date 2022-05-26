@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import "css/workRecord.css";
 import { Table, TableBody, TableContainer, TableHead, TableCell, TableRow } from "@material-ui/core";
-import "../../css/workRecord.css";
+import axios from "axios";
 
 const WorkRecord = ({ userId }) => {
   const API_URL = "http://localhost:3003";
