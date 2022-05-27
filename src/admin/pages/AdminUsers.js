@@ -60,6 +60,14 @@ const AdminUsers = () => {
       headerAlign: "center",
     },
     {
+      field: "break_cnt",
+      headerName: "연차개수",
+      type: "number",
+      flex: 1,
+      align: "center",
+      headerAlign: "center",
+    },
+    {
       field: "edit",
       headerName: "수정",
       flex: 1,
