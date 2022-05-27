@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import "../../css/register.css";
-import AdminContainer from "../AdminContainer";
+import "admin/css/register.css";
+import AdminContainer from "admin/components/AdminContainer";
 import axios from "axios";
 
 const Register = () => {
   const [idValue, setIDValue] = useState("");
   const [pwdValue, setPwdValue] = useState("");
   const [nameValue, setNameValue] = useState("");
-  const [startDateValue, setStartDateValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
+  const [startDateValue, setStartDateValue] = useState("");
+  const [breakValue, setBreakValue] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
@@ -27,8 +28,9 @@ const Register = () => {
         user_id: idValue,
         user_pwd: pwdValue,
         user_name: nameValue,
-        start_date: startDateValue,
         phone: phoneValue,
+        start_date: startDateValue,
+        break_cnt: breakValue,
       }),
     });
 
@@ -120,6 +122,19 @@ const Register = () => {
               value={startDateValue}
               onChange={(e) => {
                 setStartDateValue(e.target.value);
+              }}
+            />
+          </section>
+
+          <section className="section">
+            <h4 className="title">연차</h4>
+            <input
+              className="input"
+              type="number"
+              placeholder="연차 개수"
+              value={breakValue}
+              onChange={(e) => {
+                setBreakValue(e.target.value);
               }}
             />
           </section>
