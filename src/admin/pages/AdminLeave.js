@@ -56,6 +56,14 @@ const AdminLeave = () => {
       headerAlign: "center",
     },
     {
+      field: "used_date_cnt",
+      headerName: "사용일 수",
+      type: "number",
+      flex: 1,
+      align: "center",
+      headerAlign: "center",
+    },
+    {
       field: "reason",
       headerName: "사유",
       type: "number",
@@ -83,7 +91,7 @@ const AdminLeave = () => {
     {
       field: "status",
       headerName: "상태",
-      flex: 3,
+      flex: 2,
       align: "center",
       headerAlign: "center",
       renderCell: (params) => (

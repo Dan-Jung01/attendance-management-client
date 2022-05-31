@@ -48,6 +48,7 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
         user_name: userName,
         user_id: userId,
         reason: reason,
+        used_date_cnt: useLeaveDateCount,
       })
       .then(alert("제출이 완료되었습니다"))
       .then(modalClose);
