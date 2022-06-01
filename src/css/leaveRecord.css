@@ -6,24 +6,24 @@
   --gray: #eaeaea;
 }
 
-.work-record-container {
+.leave-record-container {
   /* width: 350px; */
   width: 90%;
   margin: 0px auto;
   margin-top: 30px;
 }
 
-.work-record-container .MuiTableCell-alignCenter {
-  font-size: 13px;
+.leave-record-container .MuiTableCell-alignCenter {
+  font-size: 11px;
 }
 
-.work-record-container .tb-isOnWork {
+.leave-record-container .tb-isOnWork {
   background-color: white;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 
-.work-record-container .tb-title {
+.leave-record-container .tb-title {
   display: flex;
   justify-content: space-between;
   padding: 15px 20px;
