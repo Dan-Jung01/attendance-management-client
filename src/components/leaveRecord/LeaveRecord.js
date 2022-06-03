@@ -52,7 +52,7 @@ const LeaveRecord = ({ userId }) => {
       <TableContainer style={{ height: "auto", maxHeight: 300 }} className="tb-isOnWork">
         <section className="tb-title">
           <div>연차사용기록</div>
-          <div>총 {leaveRecord.length}일 </div>
+          <div>총 {leaveRecord.length}건 </div>
         </section>
         <Table>
           <TableHead>
