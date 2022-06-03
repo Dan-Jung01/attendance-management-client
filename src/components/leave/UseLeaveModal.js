@@ -27,12 +27,12 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
 
   const sDate = moment(startDate).format("yyyy-MM-DD");
   const eDate = moment(endDate).format("yyyy-MM-DD");
-  console.log(sDate);
-  console.log(eDate);
+  // console.log(sDate);
+  // console.log(eDate);
 
   console.log(useLeaveDateCount);
 
-  console.log(reason);
+  // console.log(reason);
 
   const modalClose = () => {
     setUseLeaveModalOpen(false);
@@ -50,6 +50,12 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
         reason: reason,
         used_date_cnt: useLeaveDateCount,
       })
+      .then(
+        axios.put(`${API_URL}/user/userInfo/break`, {
+          user_id: userId,
+          used_date_cnt: useLeaveDateCount,
+        })
+      )
       .then(alert("제출이 완료되었습니다"))
       .then(modalClose);
   };

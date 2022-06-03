@@ -1,13 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UseLeaveModal from "./UseLeaveModal";
 import Calendar from "react-calendar";
 import moment from "moment";
 import { AiFillCaretDown } from "react-icons/ai";
 import "../../css/Calendar.css";
 import "../../css/leave.css";
+import axios from "axios";
 
 const Leave = ({ userName, userId }) => {
+  const API_URL = "http://localhost:3003";
+
   const [useLeaveModalOpen, setUseLeaveModalOpen] = useState(false);
+  const [leaveCount, setLeaveCount] = useState();
+
+  useEffect(() => {
+    try {
+      async function getUserLeaveRecord() {
+        const leaveRecord = await axios.get(`${API_URL}/user/userInfo/${userId}`);
+        console.log(leaveRecord);
+        setLeaveCount(leaveRecord?.data);
+      }
+      getUserLeaveRecord();
+    } catch (err) {
+      console.log(err);
+    }
+  }, [userId, useLeaveModalOpen]);
+
   return (
     <div className="leave-container">
       <h3>
@@ -18,7 +36,7 @@ const Leave = ({ userName, userId }) => {
           <div className="left">
             <h3>남은 연차</h3>
             <div>
-              <span className="date">4</span>일
+              <span className="date">{leaveCount?.break_cnt}</span>일
             </div>
           </div>
           <div className="right">
@@ -30,8 +48,6 @@ const Leave = ({ userName, userId }) => {
         <div className="calendar">
           <Calendar
             calendarType="US"
-            // maxDetail="year"
-            // minDetail="year"
             showNeighboringMonth={false}
             formatDay={(locale, date) => moment(date).format("DD")}
           />
