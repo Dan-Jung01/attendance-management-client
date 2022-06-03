@@ -14,6 +14,11 @@
 }
 
 .work-record-container .MuiTableCell-alignCenter {
+  font-size: 11px;
+  padding: 10px 5px;
+}
+
+.work-record-container .MuiTableCell-alignCenter {
   font-size: 13px;
 }
 
@@ -26,7 +31,7 @@
 .work-record-container .tb-title {
   display: flex;
   justify-content: space-between;
-  padding: 15px 20px;
+  padding: 20px;
   vertical-align: middle;
   background-color: var(--navy);
   color: white;
