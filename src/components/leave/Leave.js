@@ -17,7 +17,6 @@ const Leave = ({ userName, userId }) => {
     try {
       async function getUserLeaveRecord() {
         const leaveRecord = await axios.get(`${API_URL}/user/userInfo/${userId}`);
-        console.log(leaveRecord);
         setLeaveCount(leaveRecord?.data);
       }
       getUserLeaveRecord();

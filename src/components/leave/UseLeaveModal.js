@@ -30,8 +30,6 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
   // console.log(sDate);
   // console.log(eDate);
 
-  console.log(useLeaveDateCount);
-
   // console.log(reason);
 
   const modalClose = () => {
