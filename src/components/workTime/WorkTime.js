@@ -34,8 +34,9 @@ const WorkTime = ({ userName, userId }) => {
       .then(() => {
         if (recordedStartTime.isAfter(onTime)) {
           axios
-            .put(`${API_URL}/late-status`, {
+            .put(`${API_URL}/check-late`, {
               user_id: userId,
+              today_date: curDate,
             })
             .then(console.log("late-status checked"));
         } else return;
