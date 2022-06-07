@@ -10,14 +10,12 @@ import { AiFillCaretDown } from "react-icons/ai";
 const WorkTime = ({ userName, userId }) => {
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
-  const [workTime, setWorkTime] = useState();
 
   const API_URL = "http://localhost:3003";
   const curDate = moment().format("YYYY-MM-DD");
 
   const recordedStartTime = moment(startTime, "HH:mm:ss");
   const recordedEndTime = moment(endTime, "HH:mm:ss");
-  // console.log(recordedEndTime.diff(recordedStartTime, "minutes") + " days");
 
   const onTime = moment("13:59:59", "HH:mm:ss");
   const offOnTime = moment("19:00:00", "HH:mm:ss");
@@ -90,14 +88,6 @@ const WorkTime = ({ userName, userId }) => {
       isMount = false;
     };
   }, [curDate, userName, startTime, endTime]);
-
-  // useEffect(() => {
-  //   if (todayDate !== curDate) {
-  //     setStartTime("00:00:00");
-  //     setEndTime("00:00:00");
-  //   }
-  //   // getWorkTime();
-  // }, [curDate, todayDate]);
 
   return (
     <div className="work-check-container">
