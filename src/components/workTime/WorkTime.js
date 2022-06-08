@@ -46,6 +46,7 @@ const WorkTime = ({ userName, userId }) => {
   // Send current time to DB when user pressed work end button
   const endOnclick = () => {
     const curTime = moment().format("HH:mm:ss");
+
     axios
       .put(`${API_URL}/work`, {
         off_work: curTime,
@@ -56,8 +57,9 @@ const WorkTime = ({ userName, userId }) => {
       .then(() => {
         if (recordedEndTime.isBefore(offOnTime)) {
           axios
-            .put(`${API_URL}/early-status`, {
+            .put(`${API_URL}/check-early`, {
               user_id: userId,
+              today_date: curDate,
             })
             .then(console.log("early-status checked"));
         } else return;
@@ -76,9 +78,7 @@ const WorkTime = ({ userName, userId }) => {
         });
         if (isMount) {
           setStartTime(userWorkTime.data.on_work);
-          // console.log(typeof new Date(userWorkTime.data.on_work));
           setEndTime(userWorkTime.data.off_work);
-          // return userWorkTime;
         }
       }
       getUserWorkTime();
