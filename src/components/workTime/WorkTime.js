@@ -32,14 +32,13 @@ const WorkTime = ({ userName, userId }) => {
       })
       .then(setStartTime(curTime))
       .then(() => {
-        if (recordedStartTime.isAfter(onTime)) {
-          axios
-            .put(`${API_URL}/check-late`, {
-              user_id: userId,
-              today_date: curDate,
-            })
-            .then(console.log("late-status checked"));
-        } else return;
+        axios
+          .put(`${API_URL}/check-late`, {
+            user_id: userId,
+            today_date: curDate,
+            is_late: recordedStartTime.isAfter(onTime),
+          })
+          .then(console.log("late-status checked"));
       });
   };
 
