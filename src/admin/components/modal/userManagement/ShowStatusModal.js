@@ -40,7 +40,9 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
         <TabContext value={tabValue}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <div className="header">
-              <h2>{tableValue.user_name}의 근태정보</h2>
+              <h2>
+                <span>{tableValue.user_name}</span> 근태정보
+              </h2>
               <label className="btn-close" onClick={modalClose}>
                 X
               </label>
@@ -53,48 +55,48 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
               <Tab label="조퇴" value="5" />
             </TabList>
           </Box>
-          <TabPanel value="1" className="tab-summary">
-            <div className="top group">
-              <div className="element">
-                <div className="title">지각</div>
-                <div className="count">
-                  <span>{stateLate}</span>회
+          <TabPanel value="1" className="tab-panel">
+            <div className="tab-summary">
+              <div className="group">
+                <div className="element">
+                  <div className="title">지각</div>
+                  <div className="count">
+                    <span>{stateLate}</span>회
+                  </div>
+                </div>
+                <div className="element">
+                  <div className="title">미체크</div>
+                  <div className="count">{/* <span>{status.state_miss_check}</span>회 */}</div>
+                </div>
+                <div className="element">
+                  <div className="title">조퇴</div>
+                  <div className="count">
+                    <span>{stateEarlyCheck}</span>회
+                  </div>
                 </div>
               </div>
+            </div>
+            <div>
               <div className="element">
                 <div className="title">결근</div>
-                <div className="count"> {/* <span>{status.state_absence}</span>회 */}</div>
-              </div>
-            </div>
-            <div className="top group">
-              <div className="element">
-                <div className="title">미체크</div>
-                <div className="count">{/* <span>{status.state_miss_check}</span>회 */}</div>
-              </div>
-              <div className="element">
-                <div className="title">조퇴</div>
                 <div className="count">
-                  <span>{stateEarlyCheck}</span>회
+                  {" "}
+                  <span>{status.state_absence}</span>회
                 </div>
               </div>
             </div>
-
-            {/* <div className="bottom group">
-              <div className="element">미체크</div>
-              <div className="element">조퇴</div>
-            </div> */}
           </TabPanel>
-          <TabPanel value="2">지각</TabPanel>
+          <TabPanel value="2" className="tab-panel">
+            <div>지각</div>
+          </TabPanel>
           <TabPanel value="3">결근</TabPanel>
-          <TabPanel value="4">미체크</TabPanel>
-          <TabPanel value="5">조퇴</TabPanel>
+          <TabPanel value="4" className="tab-panel">
+            미체크
+          </TabPanel>
+          <TabPanel value="5" className="tab-panel">
+            조퇴
+          </TabPanel>
         </TabContext>
-
-        {/* <div className="btn-container">
-          <button className="btn-cancle" onClick={modalClose}>
-            확인
-          </button>
-        </div> */}
       </Box>
     </Modal>
   );
