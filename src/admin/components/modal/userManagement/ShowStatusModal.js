@@ -50,7 +50,7 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
             <TabList onChange={handleTabChange} aria-label="lab API tabs example">
               <Tab label="요약" value="1" />
               <Tab label="지각" value="2" />
-              <Tab label="결근" value="3" />
+              {/* <Tab label="결근" value="3" /> */}
               <Tab label="미체크" value="4" />
               <Tab label="조퇴" value="5" />
             </TabList>
@@ -77,19 +77,16 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
               </div>
             </div>
             <div>
-              <div className="element">
+              {/* <div className="element">
                 <div className="title">결근</div>
-                <div className="count">
-                  {" "}
-                  <span>{status.state_absence}</span>회
-                </div>
-              </div>
+                <div className="count"> <span>{status.state_absence}</span>회</div>
+              </div> */}
             </div>
           </TabPanel>
           <TabPanel value="2" className="tab-panel">
             <div>지각</div>
           </TabPanel>
-          <TabPanel value="3">결근</TabPanel>
+          {/* <TabPanel value="3">결근</TabPanel> */}
           <TabPanel value="4" className="tab-panel">
             미체크
           </TabPanel>
