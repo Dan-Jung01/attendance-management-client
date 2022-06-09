@@ -9,6 +9,7 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
   const [tabValue, setTabValue] = useState("1");
   const [status, setStatus] = useState({});
   const [stateLate, setStateLate] = useState();
+  const [stateEarlyCheck, setStateEarlyCheck] = useState();
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
@@ -22,13 +23,14 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/late-count`, {
+      .get(`${API_URL}/status`, {
         params: {
           user_id: tableValue.user_id,
         },
       })
       .then(async (res) => {
-        setStateLate(res.data);
+        setStateLate(res?.data[0][0]?.state_late);
+        setStateEarlyCheck(res?.data[1][0]?.state_early_check);
       });
   }, [tableValue.user_id]);
 
@@ -71,7 +73,9 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
               </div>
               <div className="element">
                 <div className="title">조퇴</div>
-                <div className="count">{/* <span>{status.state_early_check}</span>회 */}</div>
+                <div className="count">
+                  <span>{stateEarlyCheck}</span>회
+                </div>
               </div>
             </div>
 
