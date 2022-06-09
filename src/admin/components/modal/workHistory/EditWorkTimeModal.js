@@ -6,10 +6,17 @@ import ModalStyle from "../../../../utils/ModalStyle";
 import "../../../css/modal/editWorkTimeModal.css";
 
 import axios from "axios";
+import moment from "moment";
 
 const EditWorkTimeModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen, tableValue }) => {
   const [inputOnWork, setInputOnWork] = useState(tableValue?.on_work);
   const [inputOffWork, setInputOffWork] = useState(tableValue?.off_work);
+
+  const onTime = moment("13:59:59", "HH:mm:ss");
+  const offOnTime = moment("19:00:00", "HH:mm:ss");
+
+  const recordedStartTime = moment(inputOnWork, "HH:mm:ss");
+  const recordedEndTime = moment(inputOffWork, "HH:mm:ss");
 
   const API_URL = "http://localhost:3003";
 
@@ -35,6 +42,15 @@ const EditWorkTimeModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen, ta
         off_work: inputOffWork,
         today_date: tableValue.today_date,
         user_id: tableValue.user_id,
+      })
+      .then(() => {
+        axios
+          .put(`${API_URL}/check-late`, {
+            user_id: tableValue.user_id,
+            today_date: tableValue.today_date,
+            is_late: recordedStartTime.isAfter(onTime),
+          })
+          .then(console.log("late-status checked"));
       })
       .then(alert("수정이 완료되었습니다"))
       .then(setEditWorkTimeModalOpen(false));
