@@ -13,15 +13,13 @@ const WorkTime = ({ userName, userId }) => {
   const API_URL = "http://localhost:3003";
   const curDate = moment().format("YYYY-MM-DD");
 
-  const recordedStartTime = moment(startTime, "HH:mm:ss");
-  const recordedEndTime = moment(endTime, "HH:mm:ss");
-
-  const onTime = moment("13:59:59", "HH:mm:ss");
+  const onTime = moment("09:59:59", "HH:mm:ss");
   const offOnTime = moment("19:00:00", "HH:mm:ss");
 
   // Send current time to DB and record if user was not on time when user pressed work start button
   const startOnclick = () => {
     const curTime = moment().format("HH:mm:ss");
+    const recordedStartTime = moment(curTime, "HH:mm:ss");
     axios
       .post(`${API_URL}/work`, {
         on_work: curTime,
@@ -29,7 +27,9 @@ const WorkTime = ({ userName, userId }) => {
         user_name: userName,
         user_id: userId,
       })
-      .then(setStartTime(curTime))
+      .then(() => {
+        setStartTime(curTime);
+      })
       .then(() => {
         axios.put(`${API_URL}/check-late`, {
           user_id: userId,
@@ -42,6 +42,8 @@ const WorkTime = ({ userName, userId }) => {
   // Send current time to DB when user pressed work end button
   const endOnclick = () => {
     const curTime = moment().format("HH:mm:ss");
+    const recordedEndTime = moment(curTime, "HH:mm:ss");
+
     axios
       .put(`${API_URL}/work`, {
         off_work: curTime,
