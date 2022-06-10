@@ -3,7 +3,6 @@ import moment from "moment";
 import Clock from "react-live-clock";
 import "../../css/workTime.css";
 import { FaChild, FaRunning } from "react-icons/fa";
-import { MdArrowDropDown } from "react-icons/md";
 import axios from "axios";
 import { AiFillCaretDown } from "react-icons/ai";
 
@@ -32,20 +31,17 @@ const WorkTime = ({ userName, userId }) => {
       })
       .then(setStartTime(curTime))
       .then(() => {
-        axios
-          .put(`${API_URL}/check-late`, {
-            user_id: userId,
-            today_date: curDate,
-            is_late: recordedStartTime.isAfter(onTime),
-          })
-          .then(console.log("late-status checked"));
+        axios.put(`${API_URL}/check-late`, {
+          user_id: userId,
+          today_date: curDate,
+          is_late: recordedStartTime.isAfter(onTime),
+        });
       });
   };
 
   // Send current time to DB when user pressed work end button
   const endOnclick = () => {
     const curTime = moment().format("HH:mm:ss");
-
     axios
       .put(`${API_URL}/work`, {
         off_work: curTime,
@@ -54,14 +50,11 @@ const WorkTime = ({ userName, userId }) => {
       })
       .then(setEndTime(curTime))
       .then(() => {
-        if (recordedEndTime.isBefore(offOnTime)) {
-          axios
-            .put(`${API_URL}/check-early`, {
-              user_id: userId,
-              today_date: curDate,
-            })
-            .then(console.log("early-status checked"));
-        } else return;
+        axios.put(`${API_URL}/check-early`, {
+          user_id: userId,
+          today_date: curDate,
+          is_early: recordedEndTime.isBefore(offOnTime),
+        });
       });
   };
 
