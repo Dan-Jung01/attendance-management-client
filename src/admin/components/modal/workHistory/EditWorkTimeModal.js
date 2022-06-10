@@ -12,7 +12,7 @@ const EditWorkTimeModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen, ta
   const [inputOnWork, setInputOnWork] = useState(tableValue?.on_work);
   const [inputOffWork, setInputOffWork] = useState(tableValue?.off_work);
 
-  const onTime = moment("13:59:59", "HH:mm:ss");
+  const onTime = moment("09:59:59", "HH:mm:ss");
   const offOnTime = moment("19:00:00", "HH:mm:ss");
 
   const recordedStartTime = moment(inputOnWork, "HH:mm:ss");
@@ -31,27 +31,26 @@ const EditWorkTimeModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen, ta
     setEditWorkTimeModalOpen(false);
   };
 
-  // console.log(tableValue);
-  // console.log(inputOnWork);
-  // console.log(inputOffWork);
+  const editWorkTime = async () => {
+    await axios.put(`${API_URL}/both-work-time`, {
+      on_work: inputOnWork,
+      off_work: inputOffWork,
+      today_date: tableValue.today_date,
+      user_id: tableValue.user_id,
+    });
 
-  const editWorkTime = () => {
-    axios
-      .put(`${API_URL}/both-work-time`, {
-        on_work: inputOnWork,
-        off_work: inputOffWork,
-        today_date: tableValue.today_date,
-        user_id: tableValue.user_id,
-      })
-      .then(() => {
-        axios
-          .put(`${API_URL}/check-late`, {
-            user_id: tableValue.user_id,
-            today_date: tableValue.today_date,
-            is_late: recordedStartTime.isAfter(onTime),
-          })
-          .then(console.log("late-status checked"));
-      })
+    const checkLateStatus = await axios.put(`${API_URL}/check-late`, {
+      user_id: tableValue.user_id,
+      today_date: tableValue.today_date,
+      is_late: recordedStartTime.isAfter(onTime),
+    });
+    const checkEarlyStatus = await axios.put(`${API_URL}/check-early`, {
+      user_id: tableValue.user_id,
+      today_date: tableValue.today_date,
+      is_early: recordedEndTime.isBefore(offOnTime),
+    });
+
+    Promise.all([checkLateStatus, checkEarlyStatus])
       .then(alert("수정이 완료되었습니다"))
       .then(setEditWorkTimeModalOpen(false));
   };
