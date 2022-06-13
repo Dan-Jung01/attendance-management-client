@@ -27,6 +27,29 @@
   border: 1px solid var(--gray);
 }
 
+.admin-work-container .header .date-container {
+  display: flex;
+  width: 30%;
+  font-size: 20px;
+}
+
+.admin-work-container .header .date-picker {
+  background-color: var(--navy);
+  color: white;
+  font-size: 16px;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.admin-work-container .MuiDataGrid-toolbarContainer {
+  background-color: var(--navy);
+  color: white;
+}
+
+.admin-work-container .MuiDataGrid-toolbarContainer .MuiButton-root {
+  color: white;
+}
+
 .admin-work-container .header .input {
   background-color: var(--navy);
   color: white;
