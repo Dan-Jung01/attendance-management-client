@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import "../css/adminWork.css";
 import AdminContainer from "../components/AdminContainer";
 import axios from "axios";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import EditWorkTimeModal from "../components/modal/workHistory/EditWorkTimeModal";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import moment from "moment";
+import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import ko from "date-fns/locale/ko";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const AdminWork = () => {
   const API_URL = "http://localhost:3003";
@@ -17,8 +20,11 @@ const AdminWork = () => {
   const [tableValue, setTableValue] = useState({});
   const [dialogValue, setDialogValue] = useState(false);
   const [searchWord, setSearchWord] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
+  registerLocale("ko", ko);
 
-  const onTime = moment("13:59:59", "HH:mm:ss");
+  const onTime = moment("08:31:00", "HH:mm:ss");
 
   const columns = [
     {
@@ -95,6 +101,23 @@ const AdminWork = () => {
     },
   ];
 
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        {/* <GridToolbarColumnsButton /> */}
+        {/* <GridToolbarFilterButton /> */}
+        {/* <GridToolbarDensitySelector /> */}
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    );
+  }
+
+  const onDateChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+
   const deleteWorkTime = async (selectedTableValue) => {
     const answer = window.confirm("삭제하시겠습니까?");
     if (answer) {
@@ -114,10 +137,14 @@ const AdminWork = () => {
   });
 
   useEffect(() => {
-    axios.get(`${API_URL}/work-time`).then(async (res) => {
-      setUsersWorkTime(res?.data);
-    });
-  }, [editWorkTimeModalOpen, dialogValue]);
+    axios
+      .get(`${API_URL}/work-time`, {
+        params: { startDate, endDate },
+      })
+      .then(async (res) => {
+        setUsersWorkTime(res?.data);
+      });
+  }, [editWorkTimeModalOpen, dialogValue, startDate, endDate]);
 
   return (
     <AdminContainer>
@@ -138,7 +165,23 @@ const AdminWork = () => {
         }}
       >
         <div className="header">
-          <div>총 {filtering.length}건</div>
+          <div className="date-container">
+            <FaRegCalendarAlt />
+            <DatePicker
+              selected={startDate}
+              endDate={endDate}
+              startDate={startDate}
+              onChange={onDateChange}
+              selectsRange
+              locale="ko"
+              // inline
+              className="date-picker"
+              dateFormat={"yyyy/MM/dd"}
+              showMonthDropdown
+              showYearDropdown
+              dropdownMode="select"
+            />
+          </div>
           <input
             className="input"
             type={"text"}
@@ -151,6 +194,9 @@ const AdminWork = () => {
         <DataGrid
           rows={filtering}
           columns={columns}
+          components={{
+            Toolbar: CustomToolbar,
+          }}
           pageSize={25}
           rowsPerPageOptions={[25]}
           checkboxSelection={false}
