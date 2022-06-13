@@ -36,6 +36,13 @@ const WorkTime = ({ userName, userId }) => {
           today_date: curDate,
           is_late: recordedStartTime.isAfter(onTime),
         });
+      })
+      .then(() => {
+        axios.put(`${API_URL}/check-miss`, {
+          user_id: userId,
+          today_date: curDate,
+          is_miss: true,
+        });
       });
   };
 
@@ -56,6 +63,13 @@ const WorkTime = ({ userName, userId }) => {
           user_id: userId,
           today_date: curDate,
           is_early: recordedEndTime.isBefore(offOnTime),
+        });
+      })
+      .then(() => {
+        axios.put(`${API_URL}/check-miss`, {
+          user_id: userId,
+          today_date: curDate,
+          is_miss: false,
         });
       });
   };

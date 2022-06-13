@@ -10,6 +10,7 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
   const [status, setStatus] = useState({});
   const [stateLate, setStateLate] = useState();
   const [stateEarlyCheck, setStateEarlyCheck] = useState();
+  const [stateMissCheck, setStateMissCheck] = useState();
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
@@ -29,8 +30,11 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
         },
       })
       .then(async (res) => {
-        setStateLate(res?.data[0][0]?.state_late);
-        setStateEarlyCheck(res?.data[1][0]?.state_early_check);
+        console.log(res.data);
+
+        setStateLate(res?.data[0][0]?.state_late === null ? 0 : res.data[0][0].state_late);
+        setStateEarlyCheck(res?.data[1][0]?.state_early_check === null ? 0 : res?.data[1][0]?.state_early_check);
+        setStateMissCheck(res?.data[2][0]?.state_miss_check === null ? 0 : res?.data[2][0]?.state_miss_check);
       });
   }, [tableValue.user_id]);
 
@@ -66,7 +70,9 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
                 </div>
                 <div className="element">
                   <div className="title">미체크</div>
-                  <div className="count">{/* <span>{status.state_miss_check}</span>회 */}</div>
+                  <div className="count">
+                    <span>{parseInt(stateMissCheck) === 1 ? 0 : stateMissCheck}</span>회
+                  </div>
                 </div>
                 <div className="element">
                   <div className="title">조퇴</div>
