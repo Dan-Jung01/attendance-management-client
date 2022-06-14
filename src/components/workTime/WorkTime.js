@@ -50,12 +50,19 @@ const WorkTime = ({ userName, userId }) => {
   const endOnclick = () => {
     const curTime = moment().format("HH:mm:ss");
     const recordedEndTime = moment(curTime, "HH:mm:ss");
+    const recordedStartTime = moment(startTime, "HH:mm:ss");
+
+    const second = moment.duration(recordedEndTime.diff(recordedStartTime)).asSeconds();
+    const duration = moment.duration(second, "second");
+    const totalWork = duration.format("hh:mm:ss");
+    // console.log("시간 차이: ", moment.duration(recordedEndTime.diff(recordedStartTime)).asMilliseconds());
 
     axios
       .put(`${API_URL}/work`, {
         off_work: curTime,
         today_date: curDate,
         user_name: userName,
+        total_work: totalWork,
       })
       .then(setEndTime(curTime))
       .then(() => {
