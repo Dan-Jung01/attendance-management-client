@@ -92,8 +92,8 @@ const WorkTime = ({ userName, userId }) => {
           },
         });
         if (isMount) {
-          setStartTime(userWorkTime.data.on_work);
-          setEndTime(userWorkTime.data.off_work);
+          setStartTime(userWorkTime?.data?.on_work);
+          setEndTime(userWorkTime?.data?.off_work);
         }
       }
       getUserWorkTime();
