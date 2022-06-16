@@ -1,26 +1,59 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import "../../../css/modal/showStatusModal.css";
 import { Box, Modal, Tab } from "@mui/material";
 import { TabList, TabPanel, TabContext } from "@mui/lab";
 import ModalStyle from "../../../../utils/ModalStyle";
 import axios from "axios";
+import Table from "admin/components/table/Table";
+import "admin/css/modal/statusModalTable.css";
 
 const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableValue }) => {
   const [tabValue, setTabValue] = useState("1");
-  const [status, setStatus] = useState({});
   const [stateLate, setStateLate] = useState();
   const [stateEarlyCheck, setStateEarlyCheck] = useState();
   const [stateMissCheck, setStateMissCheck] = useState();
+  const [lateList, setLateList] = useState([]);
+
+  const API_URL = "http://localhost:3003";
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
+
+    if (newValue === "2") {
+      axios
+        .get(`${API_URL}/late-status`, {
+          params: {
+            user_id: tableValue.user_id,
+          },
+        })
+        .then((r) => {
+          setLateList(r?.data);
+        });
+    }
   };
 
   const modalClose = () => {
     setShowStatusModalOpen(false);
+    setTabValue("1");
   };
 
-  const API_URL = "http://localhost:3003";
+  const columns = useMemo(
+    () => [
+      {
+        accessor: "id",
+        Header: "No.",
+      },
+      {
+        accessor: "today_date",
+        Header: "날짜",
+      },
+      {
+        accessor: "on_work",
+        Header: "출근시간",
+      },
+    ],
+    []
+  );
 
   useEffect(() => {
     axios
@@ -29,7 +62,7 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
           user_id: tableValue.user_id,
         },
       })
-      .then(async (res) => {
+      .then((res) => {
         console.log(res.data);
 
         setStateLate(res?.data[0][0]?.state_late === null ? 0 : res.data[0][0].state_late);
@@ -90,7 +123,8 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
             </div>
           </TabPanel>
           <TabPanel value="2" className="tab-panel">
-            <div>지각</div>
+            {/* <div>지각</div> */}
+            <Table columns={columns} data={lateList} />
           </TabPanel>
           {/* <TabPanel value="3">결근</TabPanel> */}
           <TabPanel value="4" className="tab-panel">
