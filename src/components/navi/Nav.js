@@ -1,19 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../../css/nav.css";
+import { AiFillHome } from "react-icons/ai";
+import { RiChatHistoryFill } from "react-icons/ri";
 
 const Navigation = () => {
   return (
     <ul className="nav-container">
       <li>
-        <Link to="/" className="nav-link">
-          마이페이지
-        </Link>
+        <NavLink exact to="/" className="nav-link" activeClassName="active">
+          <AiFillHome />
+        </NavLink>
       </li>
       <li>
-        <Link to="/record" className="nav-link">
-          메뉴2
-        </Link>
+        <NavLink to="/record" className="nav-link" activeClassName="active">
+          <RiChatHistoryFill />
+        </NavLink>
       </li>
     </ul>
   );
