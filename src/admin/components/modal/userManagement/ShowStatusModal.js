@@ -13,6 +13,8 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
   const [stateEarlyCheck, setStateEarlyCheck] = useState();
   const [stateMissCheck, setStateMissCheck] = useState();
   const [lateList, setLateList] = useState([]);
+  const [earlyList, setEarlyList] = useState([]);
+  const [missList, setMissList] = useState([]);
 
   const API_URL = "http://localhost:3003";
 
@@ -29,6 +31,17 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
         .then((r) => {
           setLateList(r?.data);
         });
+    } else if (newValue === "3") {
+      axios
+        .get(`${API_URL}/miss-status`, {
+          params: {
+            user_id: tableValue.user_id,
+          },
+        })
+        .then((r) => {
+          setMissList(r?.data);
+          console.log(r);
+        });
     }
   };
 
@@ -37,23 +50,35 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
     setTabValue("1");
   };
 
-  const columns = useMemo(
-    () => [
-      {
-        accessor: "id",
-        Header: "No.",
-      },
-      {
-        accessor: "today_date",
-        Header: "날짜",
-      },
-      {
-        accessor: "on_work",
-        Header: "출근시간",
-      },
-    ],
-    []
-  );
+  const late_columns = [
+    {
+      accessor: "id",
+      Header: "No.",
+    },
+    {
+      accessor: "today_date",
+      Header: "날짜",
+    },
+    {
+      accessor: "on_work",
+      Header: "출근시간",
+    },
+  ];
+
+  const miss_columns = [
+    {
+      accessor: "id",
+      Header: "No.",
+    },
+    {
+      accessor: "today_date",
+      Header: "날짜",
+    },
+    {
+      accessor: "off_work",
+      Header: "퇴근시간",
+    },
+  ];
 
   useEffect(() => {
     axios
@@ -87,9 +112,9 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
             <TabList onChange={handleTabChange} aria-label="lab API tabs example">
               <Tab label="요약" value="1" />
               <Tab label="지각" value="2" />
-              {/* <Tab label="결근" value="3" /> */}
-              <Tab label="미체크" value="4" />
-              <Tab label="조퇴" value="5" />
+              <Tab label="미체크" value="3" />
+              <Tab label="조퇴" value="4" />
+              {/* <Tab label="결근" value="5" /> */}
             </TabList>
           </Box>
           <TabPanel value="1" className="tab-panel">
@@ -124,15 +149,13 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
           </TabPanel>
           <TabPanel value="2" className="tab-panel">
             {/* <div>지각</div> */}
-            <Table columns={columns} data={lateList} />
+            <Table columns={late_columns} data={lateList} />
           </TabPanel>
           {/* <TabPanel value="3">결근</TabPanel> */}
-          <TabPanel value="4" className="tab-panel">
-            미체크
+          <TabPanel value="3" className="tab-panel">
+            <Table columns={miss_columns} data={missList} />
           </TabPanel>
-          <TabPanel value="5" className="tab-panel">
-            조퇴
-          </TabPanel>
+          <TabPanel value="4" className="tab-panel"></TabPanel>
         </TabContext>
       </Box>
     </Modal>
