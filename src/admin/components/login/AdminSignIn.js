@@ -10,7 +10,7 @@ const AdminSignIn = () => {
   const [pwdValue, setPwdValue] = useState("");
   const [error, setError] = useState("");
 
-  const history = useHistory();
+  // const history = useHistory();
 
   async function loginUser() {
     const url = `${API_URL}/user/admin-login`;
@@ -32,7 +32,7 @@ const AdminSignIn = () => {
       setError(res_1.message);
     } else {
       setError(null);
-      history.push("/admin");
+      // history.push("/admin");
     }
     console.log(res_1);
     if (res_1.token !== undefined) {

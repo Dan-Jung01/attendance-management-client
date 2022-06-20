@@ -8,12 +8,12 @@ const Navigation = () => {
   return (
     <ul className="nav-container">
       <li>
-        <NavLink exact to="/" className="nav-link" activeClassName="active">
+        <NavLink to="/" style={({ isActive }) => ({ color: isActive ? "orange" : null })}>
           <AiFillHome />
         </NavLink>
       </li>
       <li>
-        <NavLink to="/record" className="nav-link" activeClassName="active">
+        <NavLink to="/record" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
           <RiChatHistoryFill />
         </NavLink>
       </li>
