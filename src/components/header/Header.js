@@ -1,20 +1,17 @@
-import React from "react";
+import React, { memo } from "react";
 import "../../css/header.css";
 import { MdLogout } from "react-icons/md";
+import { useAuthContext } from "providers/AuthProvider";
 
-const Header = () => {
-  function handleLogout() {
-    // window.localStorage.clear()
-    window.localStorage.removeItem("TOKEN");
-    window.location.href = "/login";
-  }
+const Header = memo(() => {
+  const { user, logout } = useAuthContext();
 
   return (
     <div className="main-header">
-      <div className="logo">logo</div>
-      <MdLogout className="btn-logOut" onClick={handleLogout} />
+      <div className="logo">{user.user_name}</div>
+      <MdLogout className="btn-logOut" onClick={() => logout(() => console.log("Logged out succesfully"))} />
     </div>
   );
-};
+});
 
 export default Header;

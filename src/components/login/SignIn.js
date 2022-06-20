@@ -2,33 +2,45 @@ import React, { useState } from "react";
 import "../../css/signIn.css";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useAuthContext } from "providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const API_URL = "http://localhost:3003";
   const [idValue, setIDValue] = useState("");
   const [pwdValue, setPwdValue] = useState("");
   const [error, setError] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
-  async function loginUser() {
-    const url = `${API_URL}/user/login`;
+  const { login } = useAuthContext();
 
-    try {
-      const response = await axios.post(url, {
-        user_id: idValue,
-        user_pwd: pwdValue,
-      });
+  // async function loginUser() {
+  //   const url = `${API_URL}/user/login`;
 
-      if (response.status === 200 && response.data.token !== undefined) {
-        setError(null);
-        history.push("/");
-        localStorage.setItem("TOKEN", response.data.token);
-        window.location.reload();
-      }
-    } catch (err) {
-      console.log("Error >>", err);
-    }
-  }
+  //   try {
+  //     const response = await axios.post(url, {
+  //       user_id: idValue,
+  //       user_pwd: pwdValue,
+  //     });
+
+  //     if (response.status === 200 && response.data.token !== undefined) {
+  //       setError(null);
+
+  //       history("/");
+  //       localStorage.setItem("TOKEN", response.data.token);
+  //       window.location.reload();
+  //     }
+  //   } catch (err) {
+  //     console.log("Error >>", err);
+  //   }
+  // }
+
+  const onLogin = () => {
+    if (!idValue) return;
+    if (!pwdValue) return;
+
+    login(idValue, pwdValue, () => navigate("/"));
+  };
 
   return (
     <div className="sign-in-container">
@@ -58,7 +70,7 @@ const SignIn = () => {
             }}
           />
         </section>
-        <button className="btn-login" onClick={loginUser}>
+        <button className="btn-login" onClick={onLogin}>
           로그인
         </button>
       </div>

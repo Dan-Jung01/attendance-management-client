@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation, Navigate, Outlet } from "react-router-dom";
 import PublicRoute from "./PublicRoute";
 import SignIn from "../components/login/SignIn";
 import RecordPage from "../pages/RecordPage";
@@ -14,82 +14,141 @@ import MyPage from "../pages/MyPage";
 import PrivateRoute from "./PrivateRoute";
 
 import axios from "axios";
+import { AuthContextProvider } from "providers/AuthProvider";
+
+import { useAuthContext } from "providers/AuthProvider";
+import { isAuthorized } from "../utils/JwtUtils";
 
 const Router = () => {
-  const [userName, setUserName] = useState("");
-  const [userId, setUserId] = useState("");
-  const token = localStorage.getItem("TOKEN");
-  const API_URL = "http://localhost:3003";
+  // const [userName, setUserName] = useState("");
+  // const [userId, setUserId] = useState("");
+  // const token = localStorage.getItem("TOKEN");
+  // const API_URL = "http://localhost:3003";
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        if (token) {
-          const response = await axios.get(`${API_URL}/user/login`, {
-            params: {
-              token: token,
-            },
-          });
-          // setTimeout(() => {
-          //   setUserName(response.data.user_name);
-          //   setUserId(response.data.user_id);
-          // }, 1000);
-          setUserName(response.data.user_name);
-          setUserId(response.data.user_id);
-          // console.log(userId);
-          // console.log(userName);
-        } else {
-          return;
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, [token, userId, userName]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       if (token) {
+  //         const response = await axios.get(`${API_URL}/user/login`, {
+  //           params: {
+  //             token: token,
+  //           },
+  //         });
+  //         // setTimeout(() => {
+  //         //   setUserName(response.data.user_name);
+  //         //   setUserId(response.data.user_id);
+  //         // }, 1000);
+  //         setUserName(response.data.user_name);
+  //         setUserId(response.data.user_id);
+  //         // console.log(userId);
+  //         // console.log(userName);
+  //       } else {
+  //         return;
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   fetchData();
+  // }, [token, userId, userName]);
+
+  const { user } = useAuthContext();
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <PrivateRoute path="/admin-login" exact>
-          <AdminSignIn />
-        </PrivateRoute>
-        <PrivateRoute path="/admin-register" exact>
-          <Register />
-        </PrivateRoute>
+    <AuthContextProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Login routes */}
+          <Route path="/login" element={<SignIn />} />
 
-        <PrivateRoute path="/admin" exact>
-          <AdminMain />
-        </PrivateRoute>
+          {user ? (
+            <Route
+              path=""
+              element={
+                <RequireAuth>
+                  {/* Client routes */}
+                  {/* <MyPage /> */}
+                  <Main />
+                </RequireAuth>
+              }
+            >
+              <Route path="/" element={<MyPage />} />
+              <Route path="/record" element={<RecordPage />} />
 
-        <PrivateRoute path="/admin-work" exact>
-          <AdminWork />
-        </PrivateRoute>
+              {/* Admin routes */}
+              <Route path="/admin" element={<AdminSignIn />} />
+              <Route path="/admin-work" element={<AdminSignIn />} />
+              <Route path="/admin-users" element={<AdminSignIn />} />
+              <Route path="/admin-leave" element={<AdminSignIn />} />
+              <Route path="/admin-register" element={<AdminSignIn />} />
+            </Route>
+          ) : (
+            <Route path="" element={<h1>Loading</h1>} />
+          )}
+        </Routes>
+      </BrowserRouter>
+    </AuthContextProvider>
+    // <BrowserRouter>
+    //   <Switch>
+    //     <PrivateRoute path="/admin-login" exact>
+    //       <AdminSignIn />
+    //     </PrivateRoute>
+    //     <PrivateRoute path="/admin-register" exact>
+    //       <Register />
+    //     </PrivateRoute>
 
-        <PrivateRoute path="/admin-users" exact>
-          <AdminUsers />
-        </PrivateRoute>
+    //     <PrivateRoute path="/admin" exact>
+    //       <AdminMain />
+    //     </PrivateRoute>
 
-        <PrivateRoute path="/admin-leave" exact>
-          <AdminLeave />
-        </PrivateRoute>
+    //     <PrivateRoute path="/admin-work" exact>
+    //       <AdminWork />
+    //     </PrivateRoute>
 
-        {/* <PublicRoute restricted={true} component={SignIn} path="/login" exact /> */}
-        <PublicRoute restricted={true} path="/login" exact>
-          <SignIn />
-        </PublicRoute>
+    //     <PrivateRoute path="/admin-users" exact>
+    //       <AdminUsers />
+    //     </PrivateRoute>
 
-        <PrivateRoute title="MyPage" path="/" exact>
-          <MyPage userName={userName} userId={userId} />
-        </PrivateRoute>
+    //     <PrivateRoute path="/admin-leave" exact>
+    //       <AdminLeave />
+    //     </PrivateRoute>
 
-        <PrivateRoute title="Record" path="/record" exact>
-          <RecordPage userName={userName} userId={userId} />
-        </PrivateRoute>
+    //     {/* <PublicRoute restricted={true} component={SignIn} path="/login" exact /> */}
+    //     <PublicRoute restricted={true} path="/login" exact>
+    //       <SignIn />
+    //     </PublicRoute>
 
-        {/* <Route title="Record" path="/record" exact component={RecordPage} /> */}
-      </Switch>
-    </BrowserRouter>
+    //     <PrivateRoute title="MyPage" path="/" exact>
+    //       <MyPage userName={userName} userId={userId} />
+    //     </PrivateRoute>
+
+    //     <PrivateRoute title="Record" path="/record" exact>
+    //       <RecordPage userName={userName} userId={userId} />
+    //     </PrivateRoute>
+
+    //     {/* <Route title="Record" path="/record" exact component={RecordPage} /> */}
+    //   </Switch>
+    // </BrowserRouter>
+  );
+};
+
+function RequireAuth({ children }) {
+  let { token } = useAuthContext();
+  let location = useLocation();
+  console.log("TOKEN: ", token);
+  console.log("isAuthorized", isAuthorized(token));
+  if (!isAuthorized(token)) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
+}
+
+const Main = () => {
+  return (
+    <>
+      <Outlet />
+    </>
   );
 };
 
