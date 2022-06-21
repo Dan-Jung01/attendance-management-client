@@ -6,8 +6,10 @@ import { AiFillCaretDown } from "react-icons/ai";
 import "../../css/Calendar.css";
 import "../../css/leave.css";
 import axios from "axios";
+import { useAuthContext } from "providers/AuthProvider";
 
-const Leave = ({ userName, userId }) => {
+const Leave = () => {
+  const { user } = useAuthContext();
   const API_URL = "http://localhost:3003";
 
   const [useLeaveModalOpen, setUseLeaveModalOpen] = useState(false);
@@ -16,14 +18,14 @@ const Leave = ({ userName, userId }) => {
   useEffect(() => {
     try {
       async function getUserLeaveRecord() {
-        const leaveRecord = await axios.get(`${API_URL}/user/userInfo/${userId}`);
+        const leaveRecord = await axios.get(`${API_URL}/user/userInfo/${user.user_id}`);
         setLeaveCount(leaveRecord?.data);
       }
       getUserLeaveRecord();
     } catch (err) {
       console.log(err);
     }
-  }, [userId, useLeaveModalOpen]);
+  }, [user.user_id, useLeaveModalOpen]);
 
   return (
     <div className="leave-container">
@@ -52,12 +54,7 @@ const Leave = ({ userName, userId }) => {
           />
         </div>
       </div>
-      <UseLeaveModal
-        useLeaveModalOpen={useLeaveModalOpen}
-        setUseLeaveModalOpen={setUseLeaveModalOpen}
-        userName={userName}
-        userId={userId}
-      />
+      <UseLeaveModal useLeaveModalOpen={useLeaveModalOpen} setUseLeaveModalOpen={setUseLeaveModalOpen} />
     </div>
   );
 };

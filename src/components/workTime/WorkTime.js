@@ -5,8 +5,10 @@ import "../../css/workTime.css";
 import { FaChild, FaRunning } from "react-icons/fa";
 import axios from "axios";
 import { AiFillCaretDown } from "react-icons/ai";
+import { useAuthContext } from "providers/AuthProvider";
 
-const WorkTime = ({ userName, userId }) => {
+const WorkTime = () => {
+  const { user } = useAuthContext();
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
 
@@ -24,22 +26,22 @@ const WorkTime = ({ userName, userId }) => {
       .post(`${API_URL}/work`, {
         on_work: curTime,
         today_date: curDate,
-        user_name: userName,
-        user_id: userId,
+        user_name: user.user_name,
+        user_id: user.user_id,
       })
       .then(() => {
         setStartTime(curTime);
       })
       .then(() => {
         axios.put(`${API_URL}/check-late`, {
-          user_id: userId,
+          user_id: user.user_id,
           today_date: curDate,
           is_late: recordedStartTime.isAfter(onTime),
         });
       })
       .then(() => {
         axios.put(`${API_URL}/check-miss`, {
-          user_id: userId,
+          user_id: user.user_id,
           today_date: curDate,
           is_miss: true,
         });
@@ -61,20 +63,20 @@ const WorkTime = ({ userName, userId }) => {
       .put(`${API_URL}/work`, {
         off_work: curTime,
         today_date: curDate,
-        user_name: userName,
+        user_name: user.user_name,
         total_work: totalWork,
       })
       .then(setEndTime(curTime))
       .then(() => {
         axios.put(`${API_URL}/check-early`, {
-          user_id: userId,
+          user_id: user.user_id,
           today_date: curDate,
           is_early: recordedEndTime.isBefore(offOnTime),
         });
       })
       .then(() => {
         axios.put(`${API_URL}/check-miss`, {
-          user_id: userId,
+          user_id: user.user_id,
           today_date: curDate,
           is_miss: false,
         });
@@ -87,7 +89,7 @@ const WorkTime = ({ userName, userId }) => {
       async function getUserWorkTime() {
         const userWorkTime = await axios.get(`${API_URL}/on-work-time`, {
           params: {
-            user_name: userName,
+            user_name: user.user_name,
             today_date: curDate,
           },
         });
@@ -103,7 +105,7 @@ const WorkTime = ({ userName, userId }) => {
     return () => {
       isMount = false;
     };
-  }, [curDate, userName, startTime, endTime]);
+  }, [curDate, startTime, endTime, user.user_name]);
 
   return (
     <div className="work-check-container">

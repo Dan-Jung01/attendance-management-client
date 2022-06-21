@@ -8,8 +8,10 @@ import "../../css/Datepicker.css";
 import moment from "moment";
 
 import axios from "axios";
+import { useAuthContext } from "providers/AuthProvider";
 
-const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, userId }) => {
+const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen }) => {
+  const { user } = useAuthContext();
   const API_URL = "http://localhost:3003";
   const curDate = moment().format("YYYY-MM-DD");
   const [startDate, setStartDate] = useState(new Date());
@@ -43,14 +45,14 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen, userName, user
         start_date: sDate,
         end_date: eDate,
         today_date: curDate,
-        user_name: userName,
-        user_id: userId,
+        user_name: user.user_name,
+        user_id: user.user_id,
         reason: reason,
         used_date_cnt: useLeaveDateCount,
       })
       .then(
         axios.put(`${API_URL}/user/userInfo/break`, {
-          user_id: userId,
+          user_id: user.user_id,
           used_date_cnt: useLeaveDateCount,
         })
       )

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "css/workRecord.css";
 import { Table, TableBody, TableContainer, TableHead, TableCell, TableRow } from "@material-ui/core";
 import axios from "axios";
+import { useAuthContext } from "providers/AuthProvider";
 
-const WorkRecord = ({ userId }) => {
+const WorkRecord = () => {
+  const { user } = useAuthContext();
   const API_URL = "http://localhost:3003";
 
   const [workTimeRecord, setWorkTimeRecord] = useState([]);
@@ -30,7 +32,7 @@ const WorkRecord = ({ userId }) => {
       async function getUserWorkTimeRecord() {
         const workTimeRecord = await axios.get(`${API_URL}/user-work-record`, {
           params: {
-            user_id: userId,
+            user_id: user.user_id,
           },
         });
         // console.log(workTimeRecord.data);
@@ -40,7 +42,7 @@ const WorkRecord = ({ userId }) => {
     } catch (err) {
       console.log(err);
     }
-  }, [userId]);
+  }, [user.user_id]);
 
   const columns = ["날짜", "출근시간", "퇴근시간"];
 
