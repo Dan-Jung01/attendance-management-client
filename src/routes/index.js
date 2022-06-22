@@ -76,11 +76,11 @@ const Router = () => {
               <Route path="/record" element={<RecordPage />} />
 
               {/* Admin routes */}
-              <Route path="/admin" element={<AdminSignIn />} />
-              <Route path="/admin-work" element={<AdminSignIn />} />
-              <Route path="/admin-users" element={<AdminSignIn />} />
-              <Route path="/admin-leave" element={<AdminSignIn />} />
-              <Route path="/admin-register" element={<AdminSignIn />} />
+              <Route path="/admin" element={<AdminMain />} />
+              <Route path="/admin-work" element={<AdminWork />} />
+              <Route path="/admin-users" element={<AdminUsers />} />
+              <Route path="/admin-leave" element={<AdminLeave />} />
+              <Route path="/admin-register" element={<Register />} />
             </Route>
           ) : (
             <Route path="" element={<h1>Loading</h1>} />
