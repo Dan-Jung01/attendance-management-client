@@ -1,13 +1,15 @@
+import { useAuthContext } from "providers/AuthProvider";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../css/sideNav.css";
 
 const SideNav = () => {
+  const { logout } = useAuthContext();
   return (
     <div>
       <div className="side-container">
         <div className="menu">
-          <NavLink to={"/admin"} className="link" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
+          <NavLink to={"/"} className="link" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
             <div>Current Status</div>
           </NavLink>
 
@@ -41,6 +43,9 @@ const SideNav = () => {
             style={({ isActive }) => ({ color: isActive ? "organge" : null })}
           >
             <div>Add User</div>
+          </NavLink>
+          <NavLink to={"/admin-register"} className="link">
+            <div onClick={() => logout(() => console.log("Logged out succesfully"))}>Logout</div>
           </NavLink>
         </div>
       </div>
