@@ -9,42 +9,26 @@ const SideNav = () => {
     <div>
       <div className="side-container">
         <div className="menu">
-          <NavLink to={"/"} className="link" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
+          <NavLink to="/admin" className="link" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
             <div>Current Status</div>
           </NavLink>
 
-          <NavLink
-            to={"/admin-work"}
-            className="link"
-            style={({ isActive }) => ({ color: isActive ? "organge" : null })}
-          >
+          <NavLink to="/work" className="link" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
             <div>Work History</div>
           </NavLink>
 
-          <NavLink
-            to={"/admin-leave"}
-            className="link"
-            style={({ isActive }) => ({ color: isActive ? "organge" : null })}
-          >
+          <NavLink to="/leave" className="link" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
             <div>Leave History</div>
           </NavLink>
 
-          <NavLink
-            to={"/admin-users"}
-            className="link"
-            style={({ isActive }) => ({ color: isActive ? "organge" : null })}
-          >
+          <NavLink to="/users" className="link" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
             <div>User Management</div>
           </NavLink>
 
-          <NavLink
-            to={"/admin-register"}
-            className="link"
-            style={({ isActive }) => ({ color: isActive ? "organge" : null })}
-          >
+          <NavLink to="/register" className="link" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
             <div>Add User</div>
           </NavLink>
-          <NavLink to={"/admin-register"} className="link">
+          <NavLink to="" className="link">
             <div onClick={() => logout(() => console.log("Logged out succesfully"))}>Logout</div>
           </NavLink>
         </div>
