@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "admin/css/register.css";
 import AdminContainer from "admin/components/AdminContainer";
 import axios from "axios";
+import RegisterInput from "admin/components/registerInput/RegisterInput";
+import RegisterSelect from "admin/components/registerInput/RegisterSelect";
 
 const Register = () => {
   const [idValue, setIDValue] = useState("");
@@ -10,10 +12,12 @@ const Register = () => {
   const [phoneValue, setPhoneValue] = useState("");
   const [startDateValue, setStartDateValue] = useState("");
   const [breakValue, setBreakValue] = useState("");
+  const [typeValue, setTypeValue] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
   const API_URL = "http://localhost:3003";
+  const selectList = ["NORMAL", "ADMIN"];
 
   const registerUser = async () => {
     const url = `${API_URL}/user/register`;
@@ -31,6 +35,7 @@ const Register = () => {
         phone: phoneValue,
         start_date: startDateValue,
         break_cnt: breakValue,
+        type: typeValue,
       }),
     });
 
@@ -43,15 +48,8 @@ const Register = () => {
       axios
         .post(`${API_URL}/status-init`, {
           user_id: idValue,
-          // state_late: 0,
-          // state_absence: 0,
-          // state_miss_check: 0,
-          // state_early_check: 0,
         })
         .then(alert("생성이 완료되었습니다"));
-
-      // setSuccess("User successfully registered");
-      // setError(null);
     }
     console.log(res_1);
   };
@@ -61,83 +59,70 @@ const Register = () => {
       <div className="sign-up-container">
         <div className="sign-up-wrapper">
           <header className="header">사용자 추가</header>
-          <section className="section">
-            <h4 className="title">아이디</h4>
-            <input
-              className="input"
-              type="text"
-              placeholder="아이디"
-              value={idValue}
-              onChange={(e) => {
-                setIDValue(e.target.value);
-              }}
-            />
-          </section>
+          <RegisterInput
+            title={"아이디"}
+            type={"text"}
+            placeholder="아이디"
+            value={idValue}
+            onChange={(e) => {
+              setIDValue(e.target.value);
+            }}
+          />
+          <RegisterInput
+            title={"비밀번호"}
+            type={"password"}
+            placeholder="비밀번호"
+            value={pwdValue}
+            onChange={(e) => {
+              setPwdValue(e.target.value);
+            }}
+          />
+          <RegisterInput
+            title={"이름"}
+            type={"text"}
+            placeholder="이름"
+            value={nameValue}
+            onChange={(e) => {
+              setNameValue(e.target.value);
+            }}
+          />
 
-          <section className="section">
-            <h4 className="title">비밀번호</h4>
-            <input
-              className="input"
-              type="password"
-              placeholder="비밀번호"
-              value={pwdValue}
-              onChange={(e) => {
-                setPwdValue(e.target.value);
-              }}
-            />
-          </section>
+          <RegisterInput
+            title={"전화번호"}
+            type={"tel"}
+            placeholder="전화번호"
+            value={phoneValue}
+            onChange={(e) => {
+              setPhoneValue(e.target.value);
+            }}
+          />
 
-          <section className="section">
-            <h4 className="title">이름</h4>
-            <input
-              className="input"
-              type="text"
-              placeholder="이름"
-              value={nameValue}
-              onChange={(e) => {
-                setNameValue(e.target.value);
-              }}
-            />
-          </section>
+          <RegisterInput
+            title={"시작일"}
+            type={"date"}
+            placeholder="시작일"
+            value={startDateValue}
+            onChange={(e) => {
+              setStartDateValue(e.target.value);
+            }}
+          />
 
-          <section className="section">
-            <h4 className="title">전화번호</h4>
-            <input
-              className="input"
-              type="tel"
-              placeholder="전화번호"
-              value={phoneValue}
-              onChange={(e) => {
-                setPhoneValue(e.target.value);
-              }}
-            />
-          </section>
+          <RegisterInput
+            title={"연차"}
+            type={"number"}
+            placeholder="연차"
+            value={breakValue}
+            onChange={(e) => {
+              setBreakValue(e.target.value);
+            }}
+          />
 
-          <section className="section">
-            <h4 className="title">시작일</h4>
-            <input
-              className="input"
-              type="date"
-              placeholder="시작일"
-              value={startDateValue}
-              onChange={(e) => {
-                setStartDateValue(e.target.value);
-              }}
-            />
-          </section>
-
-          <section className="section">
-            <h4 className="title">연차</h4>
-            <input
-              className="input"
-              type="number"
-              placeholder="연차 개수"
-              value={breakValue}
-              onChange={(e) => {
-                setBreakValue(e.target.value);
-              }}
-            />
-          </section>
+          <RegisterSelect
+            title="권한"
+            onChange={(e) => setTypeValue(e.target.value)}
+            value={typeValue}
+            selectList={selectList}
+          />
 
           <button className="btn-regi" onClick={registerUser}>
             추가
