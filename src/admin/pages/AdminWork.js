@@ -147,7 +147,8 @@ const AdminWork = () => {
   }, [editWorkTimeModalOpen, dialogValue, startDate, endDate]);
 
   return (
-    <AdminContainer>
+    // <AdminContainer>
+    <>
       <Box
         className="admin-work-container"
         sx={{
@@ -219,7 +220,8 @@ const AdminWork = () => {
         setEditWorkTimeModalOpen={setEditWorkTimeModalOpen}
         tableValue={tableValue}
       />
-    </AdminContainer>
+    </>
+    // </AdminContainer>
   );
 };
 

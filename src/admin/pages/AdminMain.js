@@ -57,7 +57,8 @@ const AdminMain = () => {
 
   const columns = ["이름", "상태", "출근시간"];
   return (
-    <AdminContainer>
+    // <AdminContainer>
+    <>
       <TableContainer style={{ width: "30%", height: "auto", maxHeight: 500 }} className="tb-isOnWork">
         <section className="tb-title">
           <div>테이블제목</div>
@@ -77,7 +78,8 @@ const AdminMain = () => {
         </Table>
       </TableContainer>
       {/* <div className="main-container">메인페이지</div> */}
-    </AdminContainer>
+      {/* </AdminContainer> */}
+    </>
   );
 };
 

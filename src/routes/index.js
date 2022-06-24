@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate, useLocation, Navigate, Outlet } from "react-router-dom";
+import Nav from "components/navi/Nav";
+import Header from "components/header/Header";
+import SideNav from "admin/components/SideNav";
 import SignIn from "../components/login/SignIn";
+import MyPage from "../pages/MyPage";
 import RecordPage from "../pages/RecordPage";
 import AdminSignIn from "../admin/components/login/AdminSignIn";
 import AdminMain from "../admin/pages/AdminMain";
@@ -9,14 +13,10 @@ import AdminUsers from "../admin/pages/AdminUsers";
 import AdminWork from "../admin/pages/AdminWork";
 import AdminLeave from "../admin/pages/AdminLeave";
 
-import MyPage from "../pages/MyPage";
 import { AuthContextProvider, useAuthContext } from "providers/AuthProvider";
 import { isAuthorized } from "../utils/JwtUtils";
 
 const Router = () => {
-  // console.log("Router");
-  // console.log("user", user);
-
   return (
     <AuthContextProvider>
       <BrowserRouter>
@@ -25,33 +25,30 @@ const Router = () => {
           <Route path="/admin-login" element={<AdminSignIn />} />
 
           <Route
-            path=""
+            path="/admin"
             element={
               <RequireAuth>
-                <Main />
+                <AdminRoutes />
               </RequireAuth>
             }
           >
-            {/* <Route path="/admin" element={<AdminMain />}> */}
-            {/* <Route index element={<AdminMain />} /> */}
-            <Route path="admin" element={<AdminMain />} />
+            <Route index element={<AdminMain />} />
             <Route path="work" element={<AdminWork />} />
             <Route path="users" element={<AdminUsers />} />
             <Route path="leave" element={<AdminLeave />} />
             <Route path="register" element={<Register />} />
-            {/* </Route> */}
+          </Route>
 
-            <Route
-              path=""
-              element={
-                <RequireAdmin>
-                  <Main />
-                </RequireAdmin>
-              }
-            >
-              <Route index element={<MyPage />} />
-              <Route path="record" element={<RecordPage />} />
-            </Route>
+          <Route
+            path="/"
+            element={
+              <RequireAdmin>
+                <UserRoutes />
+              </RequireAdmin>
+            }
+          >
+            <Route index element={<MyPage />} />
+            <Route path="record" element={<RecordPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
@@ -60,7 +57,7 @@ const Router = () => {
 };
 
 function RequireAuth({ children }) {
-  let { token, user } = useAuthContext();
+  let { token } = useAuthContext();
   let location = useLocation();
   useEffect(() => {
     console.log(location);
@@ -72,7 +69,7 @@ function RequireAuth({ children }) {
 }
 
 function RequireAdmin({ children }) {
-  let { user } = useAuthContext();
+  let { user, token } = useAuthContext();
   let location = useLocation();
   useEffect(() => {
     console.log(location);
@@ -80,12 +77,28 @@ function RequireAdmin({ children }) {
   if (user.type === "ADMIN") {
     return <Navigate replace to="admin" state={{ from: location }} />;
   }
+  if (!isAuthorized(token)) {
+    return <Navigate replace to="/login" state={{ from: location }} />;
+  }
   return children;
 }
 
-const Main = () => {
+const AdminRoutes = () => {
+  return (
+    <div style={{ display: "flex" }}>
+      <SideNav />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "calc(100% - 250px)" }}>
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+const UserRoutes = () => {
   return (
     <>
+      <Header />
+      <Nav />
       <Outlet />
     </>
   );

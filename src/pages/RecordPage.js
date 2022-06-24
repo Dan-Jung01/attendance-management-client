@@ -5,10 +5,12 @@ import LeaveRecord from "components/leaveRecord/LeaveRecord";
 
 const RecordPage = ({ userName, userId }) => {
   return (
-    <Container>
+    // <Container>
+    <>
       <WorkRecord userName={userName} userId={userId} />
       <LeaveRecord userName={userName} userId={userId} />
-    </Container>
+      {/* </Container> */}
+    </>
   );
 };
 

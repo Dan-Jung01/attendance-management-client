@@ -135,7 +135,8 @@ const AdminLeave = () => {
   }, [editBreakStatusModalOpen, dialogValue]);
 
   return (
-    <AdminContainer>
+    // <AdminContainer>
+    <>
       <Box
         className="admin-work-container"
         sx={{
@@ -176,7 +177,8 @@ const AdminLeave = () => {
         setEditBreakStatusModalOpen={setEditBreakStatusModalOpen}
         tableValue={tableValue}
       />
-    </AdminContainer>
+    </>
+    // </AdminContainer>
   );
 };
 

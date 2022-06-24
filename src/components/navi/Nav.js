@@ -13,7 +13,7 @@ const Navigation = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/record" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
+        <NavLink to="record" style={({ isActive }) => ({ color: isActive ? "organge" : null })}>
           <RiChatHistoryFill />
         </NavLink>
       </li>

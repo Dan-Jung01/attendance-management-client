@@ -55,7 +55,8 @@ const Register = () => {
   };
 
   return (
-    <AdminContainer>
+    // <AdminContainer>
+    <>
       <div className="sign-up-container">
         <div className="sign-up-wrapper">
           <header className="header">사용자 추가</header>
@@ -129,7 +130,8 @@ const Register = () => {
           </button>
         </div>
       </div>
-    </AdminContainer>
+      {/* </AdminContainer> */}
+    </>
   );
 };
 

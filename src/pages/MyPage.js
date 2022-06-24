@@ -5,11 +5,13 @@ import Leave from "../components/leave/Leave";
 
 const MyPage = ({ userName, userId }) => {
   return (
-    <Container>
+    // <Container>
+    <>
       <WorkTime userName={userName} userId={userId} />
       <Leave userName={userName} userId={userId} />
       {/* <State /> */}
-    </Container>
+      {/* </Container> */}
+    </>
   );
 };
 

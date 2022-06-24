@@ -146,7 +146,8 @@ const AdminUsers = () => {
   }, [editUserModalOpen, dialogValue]);
 
   return (
-    <AdminContainer>
+    // <AdminContainer>
+    <>
       <Box
         className="admin-work-container"
         sx={{
@@ -192,7 +193,8 @@ const AdminUsers = () => {
         setShowStatusModalOpen={setShowStatusModalOpen}
         tableValue={tableValue}
       />
-    </AdminContainer>
+      {/* </AdminContainer> */}
+    </>
   );
 };
 

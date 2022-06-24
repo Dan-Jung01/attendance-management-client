@@ -7,22 +7,24 @@ const AuthContext = createContext(null);
 
 export const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(StorageUtils.getAuthorization());
-  const [user, setUser] = useState();
-  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     if (!token) return setUser(null);
-    console.log("DECODED_TOKEN: ", jwtDecode(token));
-    // setTimeout(() => {
+    // console.log("DECODED_TOKEN: ", jwtDecode(token));
+    // console.log("AuthProvider useEffect");
+
     setUser(jwtDecode(token));
-    // }, 2000);
   }, [token]);
 
+  // console.log("AuthProvider", user);
   const login = async (user_id, user_pwd, callback) => {
     const res = await api.post("/user/login", {
       user_id,
       user_pwd,
     });
+
+    console.log("AuthProvider login");
 
     if (!res.ok) return console.error(res.originalError);
 
@@ -30,6 +32,7 @@ export const AuthContextProvider = ({ children }) => {
     setToken(token);
     api.setHeader("Authorization", `${token_type} ${token}`);
     StorageUtils.setAuthorization(token, true);
+
     callback();
   };
 
@@ -37,6 +40,7 @@ export const AuthContextProvider = ({ children }) => {
     setToken(null);
     StorageUtils.setAuthorization("", true);
     api.deleteHeader("Authorization");
+    // console.log("AuthProvider logout");
     callback();
   };
 
