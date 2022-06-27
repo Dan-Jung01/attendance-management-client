@@ -8,7 +8,7 @@ import MyPage from "../pages/MyPage";
 import RecordPage from "../pages/RecordPage";
 import AdminSignIn from "../admin/components/login/AdminSignIn";
 import AdminMain from "../admin/pages/AdminMain";
-import Register from "../admin/components/register/Register";
+import Register from "../admin/pages/Register";
 import AdminUsers from "../admin/pages/AdminUsers";
 import AdminWork from "../admin/pages/AdminWork";
 import AdminLeave from "../admin/pages/AdminLeave";
