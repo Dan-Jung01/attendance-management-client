@@ -57,11 +57,14 @@ const Router = () => {
 };
 
 function RequireAuth({ children }) {
-  let { token } = useAuthContext();
+  let { token, user } = useAuthContext();
   let location = useLocation();
   useEffect(() => {
     console.log(location);
   }, [location]);
+  if (user.type === "NORMAL") {
+    return <Navigate replace to="/" state={{ from: location }} />;
+  }
   if (!isAuthorized(token)) {
     return <Navigate replace to="/login" state={{ from: location }} />;
   }
