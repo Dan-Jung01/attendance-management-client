@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate, useLocation, Navigate, Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation, Navigate, Outlet } from "react-router-dom";
 import Nav from "components/navi/Nav";
 import Header from "components/header/Header";
 import SideNav from "admin/components/SideNav";
@@ -59,9 +59,6 @@ const Router = () => {
 function RequireAuth({ children }) {
   let { token, user } = useAuthContext();
   let location = useLocation();
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
   if (user.type === "NORMAL") {
     return <Navigate replace to="/" state={{ from: location }} />;
   }

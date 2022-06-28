@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../../css/nav.css";
 import { AiFillHome } from "react-icons/ai";
 import { RiChatHistoryFill } from "react-icons/ri";
+import "../../css/nav.css";
 
 const Navigation = () => {
   return (

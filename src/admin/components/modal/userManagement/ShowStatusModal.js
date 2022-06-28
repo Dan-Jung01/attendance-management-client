@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import "../../../css/modal/showStatusModal.css";
 import { Box, Modal, Tab } from "@mui/material";
 import { TabList, TabPanel, TabContext } from "@mui/lab";

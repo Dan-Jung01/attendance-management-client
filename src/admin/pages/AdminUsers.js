@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../css/adminUser.css";
-import AdminContainer from "../components/AdminContainer";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
@@ -146,7 +145,6 @@ const AdminUsers = () => {
   }, [editUserModalOpen, dialogValue]);
 
   return (
-    // <AdminContainer>
     <>
       <Box
         className="admin-work-container"
@@ -193,7 +191,6 @@ const AdminUsers = () => {
         setShowStatusModalOpen={setShowStatusModalOpen}
         tableValue={tableValue}
       />
-      {/* </AdminContainer> */}
     </>
   );
 };

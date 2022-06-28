@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "admin/css/register.css";
-import AdminContainer from "admin/components/AdminContainer";
 import axios from "axios";
 import RegisterInput from "admin/components/registerInput/RegisterInput";
 import RegisterSelect from "admin/components/registerInput/RegisterSelect";
@@ -55,7 +54,6 @@ const Register = () => {
   };
 
   return (
-    // <AdminContainer>
     <>
       <div className="sign-up-container">
         <div className="sign-up-wrapper">
@@ -130,7 +128,6 @@ const Register = () => {
           </button>
         </div>
       </div>
-      {/* </AdminContainer> */}
     </>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../css/adminUser.css";
-import AdminContainer from "../components/AdminContainer";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
@@ -135,7 +134,6 @@ const AdminLeave = () => {
   }, [editBreakStatusModalOpen, dialogValue]);
 
   return (
-    // <AdminContainer>
     <>
       <Box
         className="admin-work-container"
@@ -178,7 +176,6 @@ const AdminLeave = () => {
         tableValue={tableValue}
       />
     </>
-    // </AdminContainer>
   );
 };
 

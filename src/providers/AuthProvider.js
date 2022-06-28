@@ -11,13 +11,10 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (!token) return setUser(null);
-    // console.log("DECODED_TOKEN: ", jwtDecode(token));
-    // console.log("AuthProvider useEffect");
 
     setUser(jwtDecode(token));
   }, [token]);
 
-  // console.log("AuthProvider", user);
   const login = async (user_id, user_pwd, callback) => {
     const res = await api.post("/user/login", {
       user_id,
@@ -40,7 +37,6 @@ export const AuthContextProvider = ({ children }) => {
     setToken(null);
     StorageUtils.setAuthorization("", true);
     api.deleteHeader("Authorization");
-    // console.log("AuthProvider logout");
     callback();
   };
 

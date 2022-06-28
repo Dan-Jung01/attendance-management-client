@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AdminContainer from "../components/AdminContainer";
 import "../css/adminMain.css";
 import moment from "moment";
 import axios from "axios";
@@ -10,7 +9,6 @@ const AdminMain = () => {
   const curDate = moment().format("YYYY-MM-DD");
   const API_URL = "http://localhost:3003";
   const [onWorkUsers, setOnWorkUsers] = useState([]);
-  console.log(onWorkUsers);
 
   useEffect(() => {
     try {
@@ -57,7 +55,6 @@ const AdminMain = () => {
 
   const columns = ["이름", "상태", "출근시간"];
   return (
-    // <AdminContainer>
     <>
       <TableContainer style={{ width: "30%", height: "auto", maxHeight: 500 }} className="tb-isOnWork">
         <section className="tb-title">
@@ -77,8 +74,6 @@ const AdminMain = () => {
           <TableBody>{eachRow()}</TableBody>
         </Table>
       </TableContainer>
-      {/* <div className="main-container">메인페이지</div> */}
-      {/* </AdminContainer> */}
     </>
   );
 };
