@@ -58,74 +58,79 @@ const Register = () => {
       <div className="sign-up-container">
         <div className="sign-up-wrapper">
           <header className="header">사용자 추가</header>
-          <RegisterInput
-            title={"아이디"}
-            type={"text"}
-            placeholder="아이디"
-            value={idValue}
-            onChange={(e) => {
-              setIDValue(e.target.value);
-            }}
-          />
-          <RegisterInput
-            title={"비밀번호"}
-            type={"password"}
-            placeholder="비밀번호"
-            value={pwdValue}
-            onChange={(e) => {
-              setPwdValue(e.target.value);
-            }}
-          />
-          <RegisterInput
-            title={"이름"}
-            type={"text"}
-            placeholder="이름"
-            value={nameValue}
-            onChange={(e) => {
-              setNameValue(e.target.value);
-            }}
-          />
+          <div className="input-wrapper">
+            <div>
+              <RegisterInput
+                title={"아이디"}
+                type={"text"}
+                placeholder="아이디"
+                value={idValue}
+                onChange={(e) => {
+                  setIDValue(e.target.value);
+                }}
+              />
+              <RegisterInput
+                title={"비밀번호"}
+                type={"password"}
+                placeholder="비밀번호"
+                value={pwdValue}
+                onChange={(e) => {
+                  setPwdValue(e.target.value);
+                }}
+              />
+              <RegisterInput
+                title={"이름"}
+                type={"text"}
+                placeholder="이름"
+                value={nameValue}
+                onChange={(e) => {
+                  setNameValue(e.target.value);
+                }}
+              />
+              <RegisterInput
+                title={"전화번호"}
+                type={"tel"}
+                placeholder="전화번호"
+                value={phoneValue}
+                onChange={(e) => {
+                  setPhoneValue(e.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <RegisterInput
+                title={"입사일"}
+                type={"date"}
+                placeholder="입사일"
+                value={startDateValue}
+                onChange={(e) => {
+                  setStartDateValue(e.target.value);
+                }}
+              />
 
-          <RegisterInput
-            title={"전화번호"}
-            type={"tel"}
-            placeholder="전화번호"
-            value={phoneValue}
-            onChange={(e) => {
-              setPhoneValue(e.target.value);
-            }}
-          />
+              <RegisterInput
+                title={"연차"}
+                type={"number"}
+                placeholder="연차"
+                value={breakValue}
+                onChange={(e) => {
+                  setBreakValue(e.target.value);
+                }}
+              />
 
-          <RegisterInput
-            title={"시작일"}
-            type={"date"}
-            placeholder="시작일"
-            value={startDateValue}
-            onChange={(e) => {
-              setStartDateValue(e.target.value);
-            }}
-          />
-
-          <RegisterInput
-            title={"연차"}
-            type={"number"}
-            placeholder="연차"
-            value={breakValue}
-            onChange={(e) => {
-              setBreakValue(e.target.value);
-            }}
-          />
-
-          <RegisterSelect
-            title="권한"
-            onChange={(e) => setTypeValue(e.target.value)}
-            value={typeValue}
-            selectList={selectList}
-          />
-
-          <button className="btn-regi" onClick={registerUser}>
-            추가
-          </button>
+              <RegisterSelect
+                title="권한"
+                onChange={(e) => setTypeValue(e.target.value)}
+                value={typeValue}
+                selectList={selectList}
+              />
+            </div>
+          </div>
+          <div className="btn-wrapper">
+            <button className="btn-regi" onClick={registerUser}>
+              추가
+            </button>
+          </div>
         </div>
       </div>
     </>
