@@ -4,8 +4,8 @@ import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import { FiEdit } from "react-icons/fi";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { RiPagesLine } from "react-icons/ri";
+import { RiDeleteBinLine, RiPagesLine } from "react-icons/ri";
+import { FaSearch } from "react-icons/fa";
 import EditUserInfoModal from "../components/modal/userManagement/EditUserInfoModal";
 import ShowStatusModal from "../components/modal/userManagement/ShowStatusModal";
 
@@ -159,14 +159,17 @@ const AdminUsers = () => {
             <h4 className="title">사용자 관리</h4>
             <div>총 {filtering.length}명</div>
           </div>
-          <input
-            className="input"
-            type={"text"}
-            placeholder="이름을 검색해주세요"
-            onChange={(e) => {
-              setSearchWord(e.target.value);
-            }}
-          />
+          <div className="input-wrapper">
+            <FaSearch />
+            <input
+              className="input"
+              type={"text"}
+              placeholder="이름을 검색해주세요"
+              onChange={(e) => {
+                setSearchWord(e.target.value);
+              }}
+            />
+          </div>
         </div>
         <DataGrid
           rows={filtering}

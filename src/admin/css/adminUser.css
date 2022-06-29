@@ -33,7 +33,6 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--point-color);
-  /* background-color: white; */
   height: 10%;
   padding: 10px 20px;
   margin-bottom: 1px;
@@ -54,15 +53,24 @@
   letter-spacing: 2px;
 }
 
+.admin-user-container .header .input-wrapper {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  width: 25%;
+  font-size: 20px;
+}
+
 .admin-user-container .header .input {
   background-color: var(--input-color);
   color: var(--black);
   border-bottom: 1px solid white;
-  width: 30%;
+  width: 100%;
   padding: 10px;
   outline: none;
   border: 1px solid #eaeaea;
   border-radius: 5px;
+  margin-left: 10px;
 }
 
 .admin-user-container .header .input::placeholder {

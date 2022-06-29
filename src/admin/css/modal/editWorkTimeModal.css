@@ -1,18 +1,11 @@
-:root {
-  --orange: #dd6e42;
-  --yellow: #e8dab2;
-  --navy: #4f6d7a;
-  --skyBlue: #c0d6df;
-  --gray: #eaeaea;
-}
-
 .workTime-modal-conatiner .header {
-  font-size: 20px;
   padding: 20px;
-  background-color: var(--navy);
+  background-color: var(--point-color);
   border-top-left-radius: 11px;
   border-top-right-radius: 11px;
   color: white;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .workTime-modal-conatiner .body {
@@ -25,18 +18,25 @@
   justify-content: space-around;
 }
 
+.workTime-modal-conatiner .rows .title {
+  color: var(--black);
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
 .workTime-modal-conatiner .rows .input {
-  border: solid 1px darkgray;
+  background-color: var(--input-color);
+  border: solid 1px var(--gray);
   border-radius: 5px;
-  padding: 10px 15px;
+  padding: 10px;
   letter-spacing: 5px;
-  margin-top: 5px;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .workTime-modal-conatiner .btn-container {
   display: flex;
   justify-content: flex-end;
-  /* margin-right: 10px; */
   padding: 10px 30px;
 }
 
@@ -47,11 +47,13 @@
 }
 
 .workTime-modal-conatiner .btn-container .btn-save {
-  background-color: var(--navy);
+  background-color: var(--point-color);
   color: white;
+  font-weight: bold;
 }
 
 .workTime-modal-conatiner .btn-container .btn-cancle {
-  background-color: darkgray;
+  background-color: var(--cancle-btn-color);
   color: white;
+  font-weight: bold;
 }

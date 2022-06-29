@@ -62,7 +62,7 @@ const EditWorkTimeModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen, ta
     >
       <Box sx={ModalStyle(450, 250, 0)} className="workTime-modal-conatiner">
         <div className="header">
-          <h2>사용자 출퇴근 시간 수정</h2>
+          <h2>출퇴근 시간 수정</h2>
         </div>
         <div className="body">
           <div className="rows">

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../css/adminWork.css";
 import axios from "axios";
 import { DataGrid, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import EditWorkTimeModal from "../components/modal/workHistory/EditWorkTimeModal";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBinLine } from "react-icons/ri";
-import moment from "moment";
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import ko from "date-fns/locale/ko";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import moment from "moment";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { FaRegCalendarAlt, FaSearch } from "react-icons/fa";
 
 const AdminWork = () => {
   const API_URL = "http://localhost:3003";
@@ -161,38 +161,48 @@ const AdminWork = () => {
         }}
       >
         <div className="header">
-          <div className="date-container">
-            <FaRegCalendarAlt />
-            <DatePicker
-              selected={startDate}
-              endDate={endDate}
-              startDate={startDate}
-              onChange={onDateChange}
-              selectsRange
-              locale="ko"
-              // inline
-              className="date-picker"
-              dateFormat={"yyyy/MM/dd"}
-              showMonthDropdown
-              showYearDropdown
-              dropdownMode="select"
-            />
+          <div className="title-wrapper">
+            <h4 className="title">출퇴근 관리</h4>
+            <div>총 {filtering.length}건</div>
           </div>
-          <input
-            className="input"
-            type={"text"}
-            placeholder="검색어를 입력해주세요"
-            onChange={(e) => {
-              setSearchWord(e.target.value);
-            }}
-          />
+
+          <div className="input-container">
+            <div className="input-wrapper">
+              <FaSearch />
+              <input
+                className="input"
+                type={"text"}
+                placeholder="검색어를 입력해주세요"
+                onChange={(e) => {
+                  setSearchWord(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-wrapper">
+              <FaRegCalendarAlt />
+              <DatePicker
+                selected={startDate}
+                endDate={endDate}
+                startDate={startDate}
+                onChange={onDateChange}
+                selectsRange
+                locale="ko"
+                // inline
+                className="date-picker"
+                dateFormat={"yyyy/MM/dd"}
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+              />
+            </div>
+          </div>
         </div>
         <DataGrid
           rows={filtering}
           columns={columns}
-          components={{
-            Toolbar: CustomToolbar,
-          }}
+          // components={{
+          //   Toolbar: CustomToolbar,
+          // }}
           pageSize={25}
           rowsPerPageOptions={[25]}
           checkboxSelection={false}

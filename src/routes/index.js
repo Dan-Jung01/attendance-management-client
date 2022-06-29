@@ -87,7 +87,15 @@ const AdminRoutes = () => {
   return (
     <div style={{ display: "flex" }}>
       <SideNav />
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "calc(100% - 250px)" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          maxHeight: "900px",
+          width: "calc(100% - 250px)",
+        }}
+      >
         <Outlet />
       </div>
     </div>
