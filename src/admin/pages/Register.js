@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "admin/css/register.css";
 import axios from "axios";
 import RegisterInput from "admin/components/registerInput/RegisterInput";
@@ -14,6 +15,7 @@ const Register = () => {
   const [typeValue, setTypeValue] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
 
   const API_URL = "http://localhost:3003";
   const selectList = ["NORMAL", "ADMIN"];
@@ -48,7 +50,8 @@ const Register = () => {
         .post(`${API_URL}/status-init`, {
           user_id: idValue,
         })
-        .then(alert("생성이 완료되었습니다"));
+        .then(alert("생성이 완료되었습니다"))
+        .then(navigate("/admin/users"));
     }
     console.log(res_1);
   };
