@@ -5,6 +5,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #eaeaea;
+  /* background-color: #eceff8; */
+  /* background-color: #f8f1ec; */
+  /* background-color: #f5f6fb; */
+  /* background-color: #ffffff; */
 }
 
 code {
@@ -162,4 +166,14 @@ input {
 button,
 .icon {
   cursor: pointer;
+}
+
+:root {
+  --point-color: orange;
+  --black: #1d1d1d;
+  --orange: #dd6e42;
+  --yellow: #e8dab2;
+  --navy: #4f6d7a;
+  --skyBlue: #c0d6df;
+  --gray: #eaeaea;
 }

@@ -37,6 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.2s ease-out;
 }
 
 .side-container .menu .link .list {
@@ -65,7 +66,7 @@
 }
 
 .side-container .menu .link:hover {
-  background-color: rgb(255, 102, 46);
+  background-color: rgb(255, 129, 83);
   color: white;
 }
 
