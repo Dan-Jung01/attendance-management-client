@@ -7,7 +7,7 @@ const ModalStyle = (width, height, padding) => {
     width: width,
     height: height,
     bgcolor: "background.paper",
-    border: "2px solid #4f6d7a",
+    // border: "2px solid #4f6d7a",
     // boxShadow: 24,
     p: padding,
     color: "black",

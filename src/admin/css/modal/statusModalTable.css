@@ -1,6 +1,6 @@
 .table-container {
   border-collapse: collapse;
-  border: 2px solid var(--navy);
+  border: 2px solid var(--orange);
   height: 300px;
   overflow: auto;
   border-radius: 5px;
@@ -14,7 +14,7 @@
 .table-container .table .th {
   padding: 10px;
   border-right: 1px solid lightgray;
-  background-color: var(--navy);
+  background-color: var(--orange);
   color: white;
   font-weight: bold;
 }
@@ -24,4 +24,6 @@
   border-bottom: 1px solid lightgray;
   border-right: 1px solid lightgray;
   text-align: center;
+  font-size: 14px;
+  color: var(--black);
 }

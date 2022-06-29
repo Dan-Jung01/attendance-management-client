@@ -1,18 +1,11 @@
-:root {
-  --orange: #dd6e42;
-  --yellow: #e8dab2;
-  --navy: #4f6d7a;
-  --skyBlue: #c0d6df;
-  --gray: #eaeaea;
-}
-
 .userInfo-modal-conatiner .header {
   font-size: 20px;
   padding: 20px;
-  background-color: var(--navy);
+  background-color: var(--point-color);
   border-top-left-radius: 11px;
   border-top-right-radius: 11px;
   color: white;
+  font-weight: bold;
 }
 
 .userInfo-modal-conatiner .body {
@@ -31,13 +24,25 @@
   margin-top: 17px;
 }
 
+.userInfo-modal-conatiner .rows .title {
+  color: gray;
+  margin-bottom: 3px;
+  font-size: 14px;
+}
+
 .userInfo-modal-conatiner .rows .input {
-  border: solid 1px darkgray;
+  border: 1px solid #eaeaea;
+  background-color: var(--input-color);
   border-radius: 5px;
   padding: 10px 15px;
   letter-spacing: 2px;
   margin-top: 5px;
   width: 100%;
+}
+
+.userInfo-modal-conatiner .rows .input:focus {
+  outline: none;
+  border: 2px solid var(--point-color);
 }
 
 .userInfo-modal-conatiner .btn-container {
@@ -55,11 +60,13 @@
 }
 
 .userInfo-modal-conatiner .btn-container .btn-save {
-  background-color: var(--navy);
+  background-color: var(--point-color);
   color: white;
+  letter-spacing: 1px;
 }
 
 .userInfo-modal-conatiner .btn-container .btn-cancle {
   background-color: darkgray;
   color: white;
+  letter-spacing: 1px;
 }

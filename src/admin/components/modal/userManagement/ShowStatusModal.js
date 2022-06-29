@@ -6,6 +6,7 @@ import ModalStyle from "../../../../utils/ModalStyle";
 import axios from "axios";
 import Table from "admin/components/table/Table";
 import "admin/css/modal/statusModalTable.css";
+import { AiOutlineClose } from "react-icons/ai";
 
 const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableValue }) => {
   const [tabValue, setTabValue] = useState("1");
@@ -103,10 +104,10 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <div className="header">
               <h2>
-                <span>{tableValue.user_name}</span> 근태정보
+                근태기록 - <span>{tableValue.user_name}</span>
               </h2>
               <label className="btn-close" onClick={modalClose}>
-                X
+                <AiOutlineClose />
               </label>
             </div>
             <TabList onChange={handleTabChange} aria-label="lab API tabs example">

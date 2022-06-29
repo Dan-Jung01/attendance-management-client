@@ -1,28 +1,21 @@
-:root {
-  --orange: #dd6e42;
-  --yellow: #e8dab2;
-  --navy: #4f6d7a;
-  --skyBlue: #c0d6df;
-  --gray: #eaeaea;
-}
-
 .status-modal-conatiner .header {
   display: flex;
   justify-content: space-between;
   font-size: 20px;
+  font-weight: bold;
   padding: 20px;
-  background-color: var(--navy);
+  background-color: var(--point-color);
   border-top-left-radius: 11px;
   border-top-right-radius: 11px;
   color: white;
 }
 
 .status-modal-conatiner .css-1aquho2-MuiTabs-indicator {
-  background-color: var(--orange) !important;
+  background-color: var(--point-color) !important;
 }
 
 .status-modal-conatiner .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-  color: var(--orange) !important;
+  color: var(--point-color) !important;
 }
 
 .status-modal-conatiner .tab-panel {
@@ -44,7 +37,7 @@
 }
 
 .status-modal-conatiner .tab-panel .tab-summary .group .element {
-  border: 2px solid var(--navy);
+  border: 2px solid var(--orange);
   border-radius: 5px;
   width: 30%;
   height: 100%;
@@ -58,7 +51,7 @@
   text-align: center;
   letter-spacing: 5px;
   color: white;
-  background-color: var(--navy);
+  background-color: var(--orange);
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   font-weight: bold;
@@ -84,22 +77,5 @@
   cursor: pointer;
   padding-left: 20px;
   padding-right: 10px;
-}
-
-.status-modal-conatiner .btn-container {
-  display: flex;
-  justify-content: flex-end;
-  /* margin-right: 10px; */
-  padding: 10px 30px;
-}
-
-.status-modal-conatiner .btn-container > button {
-  padding: 10px 30px;
-  margin: 0px 10px;
-  border-radius: 5px;
-}
-
-.status-modal-conatiner .btn-container .btn-cancle {
-  background-color: darkgray;
   color: white;
 }

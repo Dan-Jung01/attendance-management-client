@@ -6,7 +6,7 @@
   --gray: #eaeaea;
 }
 
-.MuiDataGrid-columnHeaders {
+.admin-work-container .MuiDataGrid-columnHeaders {
   color: white;
   background-color: var(--navy);
 }

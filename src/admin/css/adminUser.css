@@ -1,43 +1,75 @@
-:root {
-  --orange: #dd6e42;
-  --yellow: #e8dab2;
-  --navy: #4f6d7a;
-  --skyBlue: #c0d6df;
-  --gray: #eaeaea;
+.admin-user-container .MuiDataGrid-root {
+  border-radius: 10px;
 }
 
-.MuiDataGrid-columnHeaders {
-  color: white;
-  background-color: var(--navy);
+.admin-user-container .MuiDataGrid-root .MuiDataGrid-row.Mui-selected {
+  background-color: var(--table-selected-color);
+}
+.admin-user-container .MuiDataGrid-root .MuiDataGrid-row:hover {
+  background-color: var(--table-selected-color);
 }
 
-.MuiDataGrid-virtualScroller {
+.admin-user-container .MuiDataGrid-root .MuiDataGrid-row.Mui-selected:hover {
+  background-color: var(--table-selected-color);
+}
+
+.admin-user-container .MuiDataGrid-columnHeaderTitle {
+  font-weight: bold;
+}
+
+.admin-user-container .MuiDataGrid-columnHeaders {
+  color: var(--black);
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.admin-user-container .MuiDataGrid-virtualScroller {
   background-color: white;
 }
 
-.admin-work-container .header {
+.admin-user-container .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--navy);
+  background-color: var(--point-color);
+  /* background-color: white; */
   height: 10%;
-  /* margin-bottom: 20px; */
   padding: 10px 20px;
+  margin-bottom: 1px;
   color: white;
   border: 1px solid var(--gray);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 10px;
 }
 
-.admin-work-container .header .input {
-  background-color: var(--navy);
-  color: white;
+.admin-user-container .header .title-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+.admin-user-container .header .title-wrapper .title {
+  font-size: 25px;
+  margin-right: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.admin-user-container .header .input {
+  background-color: var(--input-color);
+  color: var(--black);
   border-bottom: 1px solid white;
   width: 30%;
   padding: 10px;
   outline: none;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
 }
 
-.admin-work-container .header .input::placeholder {
-  color: var(--gray);
+.admin-user-container .header .input::placeholder {
+  color: var(--black);
+}
+
+.admin-user-container .header .input:focus {
+  border: 2px solid var(--second-point-color);
+  color: var(--black);
 }

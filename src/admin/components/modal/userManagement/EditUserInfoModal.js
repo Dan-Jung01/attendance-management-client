@@ -60,6 +60,19 @@ const EditUserInfoModal = ({ editUserModalOpen, setEditUserModalOpen, tableValue
         </div>
         <div className="body">
           <div className="rows">
+            <div className="title">아이디 (수정불가)</div>
+            <div className="input-coord-container coords-input">
+              <input
+                type="text"
+                className="input"
+                value={tableValue.user_id}
+                placeholder="아이디"
+                onChange={handleIdChange}
+                disabled
+              />
+            </div>
+          </div>
+          <div className="rows">
             <div className="title">이름</div>
             <div className="input-coord-container">
               <input
@@ -71,18 +84,7 @@ const EditUserInfoModal = ({ editUserModalOpen, setEditUserModalOpen, tableValue
               />
             </div>
           </div>
-          <div className="rows">
-            <div className="title">아이디 (수정불가)</div>
-            <div className="input-coord-container coords-input">
-              <input
-                type="text"
-                className="input"
-                value={tableValue.user_id}
-                placeholder="아이디"
-                onChange={handleIdChange}
-              />
-            </div>
-          </div>
+
           <div className="rows">
             <div className="title">전화번호</div>
             <div className="input-coord-container coords-input">

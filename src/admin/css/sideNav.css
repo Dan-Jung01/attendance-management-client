@@ -62,16 +62,16 @@
 }
 
 .side-container .menu .link.selected {
-  background-color: var(--orange);
+  background-color: var(--point-color);
 }
 
 .side-container .menu .link:hover {
-  background-color: rgb(255, 129, 83);
+  background-color: var(--second-point-color);
   color: white;
 }
 
 .side-container .menu .link.active {
-  color: orange;
+  color: var(--point-color);
 }
 
 .side-container .btn-logout {

@@ -147,23 +147,18 @@ const AdminUsers = () => {
   return (
     <>
       <Box
-        className="admin-work-container"
+        className="admin-user-container"
         sx={{
           maxHeight: "80%",
           height: "80%",
           width: "80%",
-          "& .cold": {
-            backgroundColor: "#b9d5ff91",
-            color: "#1a3e72",
-          },
-          "& .hot": {
-            backgroundColor: "#ff943975",
-            color: "#1a3e72",
-          },
         }}
       >
         <div className="header">
-          <div>총 {filtering.length}명</div>
+          <div className="title-wrapper">
+            <h4 className="title">사용자 관리</h4>
+            <div>총 {filtering.length}명</div>
+          </div>
           <input
             className="input"
             type={"text"}
