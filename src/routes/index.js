@@ -2,15 +2,14 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation, Navigate, Outlet } from "react-router-dom";
 import Nav from "components/navi/Nav";
 import Header from "components/header/Header";
-import SideNav from "admin/components/SideNav";
 import SignIn from "../components/login/SignIn";
 import MyPage from "../pages/MyPage";
 import RecordPage from "../pages/RecordPage";
-import AdminSignIn from "../admin/components/login/AdminSignIn";
-import AdminMain from "../admin/pages/AdminMain";
+import SideNav from "admin/components/SideNav";
 import Register from "../admin/pages/Register";
-import AdminUsers from "../admin/pages/AdminUsers";
 import AdminWork from "../admin/pages/AdminWork";
+import AdminMain from "../admin/pages/AdminMain";
+import AdminUsers from "../admin/pages/AdminUsers";
 import AdminLeave from "../admin/pages/AdminLeave";
 
 import { AuthContextProvider, useAuthContext } from "providers/AuthProvider";
@@ -22,7 +21,6 @@ const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<SignIn />} />
-          <Route path="/admin-login" element={<AdminSignIn />} />
 
           <Route
             path="/admin"
