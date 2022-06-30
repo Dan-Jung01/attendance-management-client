@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "../css/adminUser.css";
+import "../css/adminLeave.css";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { FaSearch } from "react-icons/fa";
 import EditBreakStatusModal from "../components/modal/leaveStatus/EditBreakStatusModal";
 
 const AdminLeave = () => {
@@ -136,31 +137,29 @@ const AdminLeave = () => {
   return (
     <>
       <Box
-        className="admin-work-container"
+        className="admin-leave-container"
         sx={{
           maxHeight: "80%",
           height: "80%",
           width: "80%",
-          "& .cold": {
-            backgroundColor: "#b9d5ff91",
-            color: "#1a3e72",
-          },
-          "& .hot": {
-            backgroundColor: "#ff943975",
-            color: "#1a3e72",
-          },
         }}
       >
         <div className="header">
-          <div>총 {filtering.length}건</div>
-          <input
-            className="input"
-            type={"text"}
-            placeholder="이름을 검색해주세요"
-            onChange={(e) => {
-              setSearchWord(e.target.value);
-            }}
-          />
+          <div className="title-wrapper">
+            <h4 className="title">연차 관리</h4>
+            <div>총 {filtering.length}건</div>
+          </div>
+          <div className="input-wrapper">
+            <FaSearch />
+            <input
+              className="input"
+              type={"text"}
+              placeholder="이름을 검색해주세요"
+              onChange={(e) => {
+                setSearchWord(e.target.value);
+              }}
+            />
+          </div>
         </div>
         <DataGrid
           rows={filtering}

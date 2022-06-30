@@ -1,0 +1,89 @@
+.admin-leave-container .MuiDataGrid-root {
+  border-radius: 10px;
+}
+
+.admin-leave-container .MuiDataGrid-root .MuiDataGrid-row.Mui-selected {
+  background-color: var(--table-selected-color);
+}
+.admin-leave-container .MuiDataGrid-root .MuiDataGrid-row:hover {
+  background-color: var(--table-selected-color);
+}
+
+.admin-leave-container .MuiDataGrid-root .MuiDataGrid-row.Mui-selected:hover {
+  background-color: var(--table-selected-color);
+}
+
+.admin-leave-container .MuiDataGrid-columnHeaderTitle {
+  font-weight: bold;
+}
+
+.admin-leave-container .MuiDataGrid-columnHeaders {
+  color: var(--black);
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.admin-leave-container .MuiDataGrid-virtualScroller {
+  background-color: white;
+}
+
+.admin-leave-container .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: var(--point-color); */
+  height: 15%;
+  padding: 10px 20px;
+  margin-bottom: 1px;
+  color: white;
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  background: linear-gradient(to right, var(--point-color) 10%, white 100%);
+}
+
+.admin-leave-container .header .title-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+.admin-leave-container .header .title-wrapper .title {
+  font-size: 25px;
+  margin-right: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.admin-leave-container .header .input-wrapper {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  width: 25%;
+  font-size: 20px;
+}
+
+.admin-leave-container .header .input {
+  background-color: var(--input-color);
+  color: var(--black);
+  border-bottom: 1px solid white;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.admin-leave-container .header .input::placeholder {
+  color: var(--black);
+}
+
+.admin-leave-container .header .input:focus {
+  border: 2px solid var(--second-point-color);
+  color: var(--black);
+}
+
+.admin-leave-container .btn-status {
+  font-size: 13px !important;
+  background-color: transparent;
+}

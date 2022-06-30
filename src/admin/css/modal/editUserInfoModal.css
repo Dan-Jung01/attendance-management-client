@@ -57,16 +57,19 @@
   margin: 0px 10px;
   border-radius: 5px;
   width: 60%;
+  box-shadow: rgb(0 0 0 / 15%) -1px 1px 2px 0px;
 }
 
 .userInfo-modal-conatiner .btn-container .btn-save {
   background-color: var(--point-color);
   color: white;
   letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .userInfo-modal-conatiner .btn-container .btn-cancle {
   background-color: darkgray;
   color: white;
   letter-spacing: 1px;
+  font-weight: bold;
 }

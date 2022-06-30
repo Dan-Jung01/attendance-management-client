@@ -7,12 +7,11 @@ const ModalStyle = (width, height, padding) => {
     width: width,
     height: height,
     bgcolor: "background.paper",
-    // border: "2px solid #4f6d7a",
-    // boxShadow: 24,
     p: padding,
     color: "black",
     backgroundColor: "white",
     borderRadius: "15px",
+    boxShadow: "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
   };
   return style;
 };

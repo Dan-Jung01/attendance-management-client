@@ -44,31 +44,13 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
 
   return (
     <Modal open={editBreakStatusModalOpen}>
-      <Box sx={ModalStyle(450, 250, 0)} className="breakStatus-modal-conatiner">
+      <Box sx={ModalStyle(450, 280, 0)} className="breakStatus-modal-conatiner">
         <div className="header">
           <h2>연차사용 요청 승인</h2>
         </div>
         <div className="body">
-          {/* <div className="rows">
-            <div className="title">출근시간</div>
-            <div className="input-coord-container">
-              <input
-                type="text"
-                className="input"
-                // defaultValue={tableValue.on_work}
-                placeholder="출근시간"
-                onChange={handleOnWorkChange}
-              />
-            </div>
-          </div> */}
-
           <div className="rows form-control">
-            <RadioGroup
-              // defaultValue={tableValue?.row.status}
-              value={radioValue}
-              className="radio-group"
-              onChange={handleRadioChange}
-            >
+            <RadioGroup value={radioValue} className="radio-group" onChange={handleRadioChange}>
               <FormControlLabel value="APPROVED" control={<Radio />} label="승인" />
               <FormControlLabel value="DEFER" control={<Radio />} label="대기" />
               <FormControlLabel value="REJECTED" control={<Radio />} label="반려" />

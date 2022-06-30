@@ -1,6 +1,7 @@
 .status-modal-conatiner .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 20px;
   font-weight: bold;
   padding: 20px;
