@@ -10,7 +10,7 @@ const SideNav = () => {
   return (
     <nav>
       <div className="side-container">
-        <div className="section logo">LLOOGG</div>
+        <div className="section logo">S.C.G</div>
         <div className="section menu">
           <NavLink to="/admin" className="link" end>
             <div className="list">

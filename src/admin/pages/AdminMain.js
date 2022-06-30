@@ -55,10 +55,10 @@ const AdminMain = () => {
 
   const columns = ["이름", "상태", "출근시간"];
   return (
-    <>
-      <TableContainer style={{ width: "30%", height: "auto", maxHeight: 500 }} className="tb-isOnWork">
+    <div className="main-container">
+      <TableContainer className="tb-isOnWork">
         <section className="tb-title">
-          <div>테이블제목</div>
+          <div>근무중</div>
           <div>총 {onWorkUsers.length}명 </div>
         </section>
         <Table>
@@ -74,7 +74,7 @@ const AdminMain = () => {
           <TableBody>{eachRow()}</TableBody>
         </Table>
       </TableContainer>
-    </>
+    </div>
   );
 };
 

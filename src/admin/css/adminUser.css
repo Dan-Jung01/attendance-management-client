@@ -39,7 +39,7 @@
   color: white;
   border: 1px solid var(--gray);
   border-radius: 10px;
-  background: linear-gradient(to right, var(--point-color) 10%, white 100%);
+  background: linear-gradient(to right, var(--point-color) 10%, rgb(252, 173, 82) 50%);
 }
 
 .admin-user-container .header .title-wrapper {
