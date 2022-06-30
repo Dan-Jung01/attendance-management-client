@@ -168,7 +168,7 @@ const AdminWork = () => {
 
           <div className="input-container">
             <div className="input-wrapper">
-              <FaSearch />
+              <FaSearch className="icons" />
               <input
                 className="input"
                 type={"text"}
@@ -179,7 +179,7 @@ const AdminWork = () => {
               />
             </div>
             <div className="input-wrapper">
-              <FaRegCalendarAlt />
+              <FaRegCalendarAlt className="icons" />
               <DatePicker
                 selected={startDate}
                 endDate={endDate}

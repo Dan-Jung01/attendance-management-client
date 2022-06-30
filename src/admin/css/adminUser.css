@@ -32,13 +32,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--point-color);
-  height: 10%;
+  /* background-color: var(--point-color); */
+  height: 15%;
   padding: 10px 20px;
   margin-bottom: 1px;
   color: white;
   border: 1px solid var(--gray);
   border-radius: 10px;
+  background: linear-gradient(to right, var(--point-color) 10%, white 100%);
 }
 
 .admin-user-container .header .title-wrapper {
