@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../css/signIn.css";
+import "css/signIn.css";
 import { useAuthContext } from "providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -20,9 +20,9 @@ const SignIn = () => {
   return (
     <div className="sign-in-container">
       <div className="sign-in-wrapper">
-        <header className="header">로그인</header>
+        <header className="header">S.C.G</header>
         <section className="section">
-          <h4 className="title">아이디</h4>
+          <h4 className="title">ID</h4>
           <input
             className="input"
             type="text"
