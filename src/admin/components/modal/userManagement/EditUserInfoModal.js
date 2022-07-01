@@ -38,7 +38,7 @@ const EditUserInfoModal = ({ editUserModalOpen, setEditUserModalOpen, tableValue
 
   const editUserInfo = () => {
     axios
-      .put(`${API_URL}/user/userInfo`, {
+      .put(`${API_URL}/v1/user`, {
         user_name: inputUserName,
         user_id: tableValue.user_id,
         phone: inputPhoneNum,

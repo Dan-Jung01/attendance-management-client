@@ -20,7 +20,7 @@ const EditBreakStatusModal = ({ editBreakStatusModalOpen, setEditBreakStatusModa
   const editApproval = async () => {
     try {
       await axios
-        .put(`${API_URL}/user/break/approval`, {
+        .put(`${API_URL}/v1/break`, {
           status: radioValue,
           id: tableValue?.id,
           // user_id: tableValue?.user_id,

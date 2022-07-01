@@ -13,7 +13,7 @@ const AdminMain = () => {
   useEffect(() => {
     try {
       async function getUserWorkTime() {
-        const curUserStatus = await axios.get(`${API_URL}/user-work-status`, {
+        const curUserStatus = await axios.get(`${API_URL}/v1/work/current-worker`, {
           params: {
             today_date: curDate,
           },

@@ -21,7 +21,7 @@ const Register = () => {
   const selectList = ["NORMAL", "ADMIN"];
 
   const registerUser = async () => {
-    const url = `${API_URL}/user/register`;
+    const url = `${API_URL}/v1/auth/sign-up`;
 
     const res = await fetch(url, {
       method: "POST",

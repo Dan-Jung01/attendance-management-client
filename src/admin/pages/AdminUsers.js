@@ -123,7 +123,7 @@ const AdminUsers = () => {
   const deleteUser = async (selectedTableValue) => {
     const answer = window.confirm("삭제하시겠습니까?");
     if (answer) {
-      await axios.delete(`${API_URL}/user/userInfo/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
+      await axios.delete(`${API_URL}/v1/user/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
       setDialogValue(true);
     } else {
       return;
@@ -139,7 +139,7 @@ const AdminUsers = () => {
   });
 
   useEffect(() => {
-    axios.get(`${API_URL}/user/userInfo`).then(async (res) => {
+    axios.get(`${API_URL}/v1/user/list`).then(async (res) => {
       setUsers(res?.data);
     });
   }, [editUserModalOpen, dialogValue]);

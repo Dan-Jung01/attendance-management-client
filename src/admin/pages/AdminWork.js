@@ -117,7 +117,7 @@ const AdminWork = () => {
   const deleteWorkTime = async (selectedTableValue) => {
     const answer = window.confirm("삭제하시겠습니까?");
     if (answer) {
-      await axios.delete(`${API_URL}/work-time/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
+      await axios.delete(`${API_URL}/v1/work/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
       setDialogValue(true);
     } else {
       return;
@@ -134,7 +134,7 @@ const AdminWork = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/work-time`, {
+      .get(`${API_URL}/v1/work/admin-record`, {
         params: { startDate, endDate },
       })
       .then(async (res) => {

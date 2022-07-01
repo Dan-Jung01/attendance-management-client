@@ -16,7 +16,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [token]);
 
   const login = async (user_id, user_pwd, callback) => {
-    const res = await api.post("/user/login", {
+    const res = await api.post("v1/auth/sign-in", {
       user_id,
       user_pwd,
     });

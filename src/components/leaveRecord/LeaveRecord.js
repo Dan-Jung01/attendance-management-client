@@ -31,7 +31,7 @@ const LeaveRecord = ({ userId }) => {
   useEffect(() => {
     try {
       async function getUserWorkTimeRecord() {
-        const leaveRecord = await axios.get(`${API_URL}/user/break`, {
+        const leaveRecord = await axios.get(`${API_URL}/v1/break`, {
           params: {
             user_id: userId,
           },

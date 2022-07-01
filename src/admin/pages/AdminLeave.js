@@ -111,9 +111,10 @@ const AdminLeave = () => {
   ];
 
   const deleteBreak = async (selectedTableValue) => {
+    console.log(selectedTableValue.id);
     const answer = window.confirm("삭제하시겠습니까?");
     if (answer) {
-      await axios.delete(`${API_URL}/user/break/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
+      await axios.delete(`${API_URL}/v1/break/${selectedTableValue.id}`).then(alert("삭제되었습니다"));
       setDialogValue(true);
     } else {
       return;
@@ -129,7 +130,7 @@ const AdminLeave = () => {
   });
 
   useEffect(() => {
-    axios.get(`${API_URL}/user/break`).then(async (res) => {
+    axios.get(`${API_URL}/v1/break`).then(async (res) => {
       setUsers(res?.data);
     });
   }, [editBreakStatusModalOpen, dialogValue]);

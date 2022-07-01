@@ -18,7 +18,7 @@ const Leave = () => {
   useEffect(() => {
     try {
       async function getUserLeaveRecord() {
-        const leaveRecord = await axios.get(`${API_URL}/user/userInfo/${user.user_id}`);
+        const leaveRecord = await axios.get(`${API_URL}/v1/user/break-count/${user.user_id}`);
         setLeaveCount(leaveRecord?.data);
       }
       getUserLeaveRecord();

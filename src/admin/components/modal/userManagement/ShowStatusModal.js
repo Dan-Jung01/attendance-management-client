@@ -24,7 +24,7 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
 
     if (newValue === "2") {
       axios
-        .get(`${API_URL}/late-status`, {
+        .get(`${API_URL}/v1/work/status/late`, {
           params: {
             user_id: tableValue.user_id,
           },
@@ -34,7 +34,7 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
         });
     } else if (newValue === "3") {
       axios
-        .get(`${API_URL}/miss-status`, {
+        .get(`${API_URL}/v1/work/status/miss`, {
           params: {
             user_id: tableValue.user_id,
           },
@@ -83,7 +83,7 @@ const ShowStatusModal = ({ showStatusModalOpen, setShowStatusModalOpen, tableVal
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/status`, {
+      .get(`${API_URL}/v1/work/status`, {
         params: {
           user_id: tableValue.user_id,
         },

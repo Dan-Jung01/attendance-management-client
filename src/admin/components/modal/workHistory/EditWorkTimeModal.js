@@ -32,19 +32,19 @@ const EditWorkTimeModal = ({ editWorkTimeModalOpen, setEditWorkTimeModalOpen, ta
   };
 
   const editWorkTime = async () => {
-    await axios.put(`${API_URL}/both-work-time`, {
+    await axios.put(`${API_URL}/v1/work`, {
       on_work: inputOnWork,
       off_work: inputOffWork,
       today_date: tableValue.today_date,
       user_id: tableValue.user_id,
     });
 
-    const checkLateStatus = await axios.put(`${API_URL}/check-late`, {
+    const checkLateStatus = await axios.put(`${API_URL}/v1/work/check-late`, {
       user_id: tableValue.user_id,
       today_date: tableValue.today_date,
       is_late: recordedStartTime.isAfter(onTime),
     });
-    const checkEarlyStatus = await axios.put(`${API_URL}/check-early`, {
+    const checkEarlyStatus = await axios.put(`${API_URL}/v1/work/check-early`, {
       user_id: tableValue.user_id,
       today_date: tableValue.today_date,
       is_early: recordedEndTime.isBefore(offOnTime),

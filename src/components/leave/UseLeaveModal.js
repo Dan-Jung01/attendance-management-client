@@ -41,7 +41,7 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen }) => {
   //TODO: 연차사용 API 수정
   const handleSubmit = () => {
     axios
-      .post(`${API_URL}/user/break`, {
+      .post(`${API_URL}/v1/break`, {
         start_date: sDate,
         end_date: eDate,
         today_date: curDate,
@@ -51,7 +51,7 @@ const UseLeaveModal = ({ useLeaveModalOpen, setUseLeaveModalOpen }) => {
         used_date_cnt: useLeaveDateCount,
       })
       .then(
-        axios.put(`${API_URL}/user/userInfo/break`, {
+        axios.put(`${API_URL}/v1/user/break-calc`, {
           user_id: user.user_id,
           used_date_cnt: useLeaveDateCount,
         })

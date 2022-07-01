@@ -30,7 +30,7 @@ const WorkRecord = () => {
   useEffect(() => {
     try {
       async function getUserWorkTimeRecord() {
-        const workTimeRecord = await axios.get(`${API_URL}/user-work-record`, {
+        const workTimeRecord = await axios.get(`${API_URL}/v1/work/record`, {
           params: {
             user_id: user.user_id,
           },

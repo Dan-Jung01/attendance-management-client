@@ -23,7 +23,7 @@ const WorkTime = () => {
     const curTime = moment().format("HH:mm:ss");
     const recordedStartTime = moment(curTime, "HH:mm:ss");
     axios
-      .post(`${API_URL}/work`, {
+      .post(`${API_URL}/v1/work/start`, {
         on_work: curTime,
         today_date: curDate,
         user_name: user.user_name,
@@ -33,14 +33,14 @@ const WorkTime = () => {
         setStartTime(curTime);
       })
       .then(() => {
-        axios.put(`${API_URL}/check-late`, {
+        axios.put(`${API_URL}/v1/work/check-late`, {
           user_id: user.user_id,
           today_date: curDate,
           is_late: recordedStartTime.isAfter(onTime),
         });
       })
       .then(() => {
-        axios.put(`${API_URL}/check-miss`, {
+        axios.put(`${API_URL}/v1/work/check-miss`, {
           user_id: user.user_id,
           today_date: curDate,
           is_miss: true,
@@ -60,7 +60,7 @@ const WorkTime = () => {
     // console.log("시간 차이: ", moment.duration(recordedEndTime.diff(recordedStartTime)).asMilliseconds());
 
     axios
-      .put(`${API_URL}/work`, {
+      .put(`${API_URL}/v1/work/end`, {
         off_work: curTime,
         today_date: curDate,
         user_name: user.user_name,
@@ -68,14 +68,14 @@ const WorkTime = () => {
       })
       .then(setEndTime(curTime))
       .then(() => {
-        axios.put(`${API_URL}/check-early`, {
+        axios.put(`${API_URL}/v1/work/check-early`, {
           user_id: user.user_id,
           today_date: curDate,
           is_early: recordedEndTime.isBefore(offOnTime),
         });
       })
       .then(() => {
-        axios.put(`${API_URL}/check-miss`, {
+        axios.put(`${API_URL}/v1/work/check-miss`, {
           user_id: user.user_id,
           today_date: curDate,
           is_miss: false,
@@ -87,7 +87,7 @@ const WorkTime = () => {
     let isMount = true;
     try {
       async function getUserWorkTime() {
-        const userWorkTime = await axios.get(`${API_URL}/on-work-time`, {
+        const userWorkTime = await axios.get(`${API_URL}/v1/work/start-record`, {
           params: {
             user_name: user.user_name,
             today_date: curDate,
